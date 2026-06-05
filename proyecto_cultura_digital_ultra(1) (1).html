@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contaminación de Cuerpos de Agua en México</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root{
+--glass:rgba(255,255,255,.12);
+--border:rgba(255,255,255,.18);
+--accent:#7dd3fc;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+html{scroll-behavior:smooth}
+body{
+background:linear-gradient(135deg,#06101d,#0d3f6e,#0ea5e9);
+color:white;overflow-x:hidden;
+}
+nav{
+position:fixed;top:0;width:100%;z-index:100;
+background:rgba(0,0,0,.25);
+backdrop-filter:blur(20px);
+padding:15px;text-align:center
+}
+nav a{color:white;text-decoration:none;margin:0 12px}
+.hero{
+min-height:100vh;display:flex;align-items:center;justify-content:center;
+text-align:center;padding:40px;position:relative;
+}
+.hero h1{font-size:4rem}
+.hero::before{
+content:"";position:absolute;width:500px;height:500px;
+background:rgba(255,255,255,.08);border-radius:50%;
+filter:blur(80px);animation:float 8s infinite alternate;
+}
+@keyframes float{
+from{transform:translateY(-20px)}
+to{transform:translateY(40px)}
+}
+.container{max-width:1300px;margin:auto;padding:20px}
+.glass{
+background:var(--glass);
+backdrop-filter:blur(18px);
+border:1px solid var(--border);
+border-radius:30px;
+padding:30px;
+margin:25px 0;
+box-shadow:0 8px 40px rgba(0,0,0,.25);
+}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px}
+.card:hover{transform:translateY(-10px)}
+.card{transition:.4s}
+img{width:100%;border-radius:20px}
+h2{color:var(--accent);margin-bottom:15px}
+p,li{line-height:1.9}
+.reveal{opacity:0;transform:translateY(60px);transition:1s}
+.reveal.active{opacity:1;transform:translateY(0)}
+canvas{background:white;border-radius:20px;padding:10px}
+.timeline{border-left:3px solid white;padding-left:20px}
+.timeline div{margin:25px 0}
+footer{text-align:center;padding:40px}
+</style>
+</head>
+<body>
+
+<nav>
+<a href="#intro">Introducción</a>
+<a href="#causas">Causas</a>
+<a href="#encuesta">Encuesta</a>
+<a href="#soluciones">Soluciones</a>
+<a href="#autor">Autor</a>
+</nav>
+
+<section class="hero">
+<div>
+<h1>Contaminación de Cuerpos de Agua en México</h1>
+<p>Proyecto de Cultura Digital • Tadeo Nicolás Acuña de Dios</p>
+</div>
+</section>
+
+<div class="container">
+
+<section id="intro" class="glass reveal">
+<h2>Introducción</h2>
+<p>La contaminación del agua es uno de los principales desafíos ambientales de México. Miles de ríos, lagos y lagunas reciben residuos sólidos, aguas residuales y contaminantes químicos que alteran los ecosistemas y afectan a millones de personas.</p>
+</section>
+
+<div class="grid">
+<div class="glass card reveal">
+<img src="https://images.unsplash.com/photo-1511497584788-876760111969?w=1200">
+<h2>Ríos afectados</h2>
+<p>Los ríos pueden acumular residuos provenientes de zonas urbanas e industriales.</p>
+</div>
+
+<div class="glass card reveal">
+<img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?w=1200">
+<h2>Basura y plásticos</h2>
+<p>Los plásticos representan una amenaza para la fauna acuática y la calidad del agua.</p>
+</div>
+
+<div class="glass card reveal">
+<img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?w=1200">
+<h2>Protección ambiental</h2>
+<p>La conservación de cuerpos de agua es fundamental para las futuras generaciones.</p>
+</div>
+</div>
+
+<section id="causas" class="glass reveal">
+<h2>Principales causas</h2>
+<ul>
+<li>Descargas de aguas residuales.</li>
+<li>Desechos industriales.</li>
+<li>Uso de pesticidas y fertilizantes.</li>
+<li>Acumulación de basura.</li>
+<li>Derrames de sustancias químicas.</li>
+</ul>
+</section>
+
+<section class="glass reveal">
+<h2>Consecuencias</h2>
+<p>La contaminación provoca pérdida de biodiversidad, enfermedades, reducción de agua potable, daños económicos y deterioro de ecosistemas completos.</p>
+</section>
+
+<section id="encuesta" class="glass reveal">
+<h2>Resultados de Encuesta</h2>
+<p>Datos primarios obtenidos mediante encuestas aplicadas a estudiantes y miembros de la comunidad.</p>
+<canvas id="bar"></canvas>
+<br><br>
+<canvas id="pie"></canvas>
+</section>
+
+<section class="glass reveal">
+<h2>Línea del Tiempo</h2>
+<div class="timeline">
+<div><strong>1990:</strong> Incremento de la preocupación ambiental en México.</div>
+<div><strong>2000:</strong> Mayor inversión en plantas de tratamiento.</div>
+<div><strong>2010:</strong> Crecen campañas de educación ambiental.</div>
+<div><strong>2020:</strong> Aumenta la conciencia sobre contaminación plástica.</div>
+<div><strong>2026:</strong> Continuación de programas de protección hídrica.</div>
+</div>
+</section>
+
+<section id="soluciones" class="glass reveal">
+<h2>Propuestas de Solución</h2>
+<ul>
+<li>Campañas comunitarias de limpieza.</li>
+<li>Tratamiento adecuado de aguas residuales.</li>
+<li>Reducción de plásticos de un solo uso.</li>
+<li>Educación ambiental desde edades tempranas.</li>
+<li>Mayor vigilancia y aplicación de sanciones.</li>
+</ul>
+</section>
+
+<section class="glass reveal">
+<h2>Video Informativo</h2>
+<iframe width="100%" height="500" src="https://www.youtube.com/embed/aqhzFd4NUPI" style="border:none;border-radius:20px"></iframe>
+</section>
+
+<section id="autor" class="glass reveal">
+<h2>Sobre el Autor</h2>
+<p>Mi nombre es <strong>Tadeo Nicolás Acuña de Dios</strong>. Todo lo que observas dentro de esta página web forma parte de mi proyecto de Cultura Digital. Este trabajo integra investigación documental y recopilación de datos primarios mediante encuestas para analizar la problemática de la contaminación de cuerpos de agua en México y fomentar una mayor conciencia ambiental.</p>
+</section>
+
+<section class="glass reveal">
+<h2>Referencias</h2>
+<ul>
+<li>CONAGUA</li>
+<li>SEMARNAT</li>
+<li>INEGI</li>
+<li>PNUMA</li>
+<li>Artículos científicos sobre contaminación hídrica en México.</li>
+</ul>
+</section>
+
+</div>
+
+<footer>Proyecto de Cultura Digital • 2026</footer>
+
+<script>
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){entry.target.classList.add('active');}
+});
+});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+new Chart(document.getElementById('bar'),{
+type:'bar',
+data:{
+labels:['Percibe contaminación','Observa basura','Conoce riesgos','Participa','Apoya campañas'],
+datasets:[{label:'Porcentaje',data:[88,74,63,51,92]}]
+},
+options:{responsive:true}
+});
+
+new Chart(document.getElementById('pie'),{
+type:'pie',
+data:{
+labels:['Basura','Aguas residuales','Industria','Agricultura'],
+datasets:[{data:[35,30,20,15]}]
+}
+});
+</script>
+
+</body>
+</html>
