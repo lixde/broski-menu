@@ -419,11 +419,59 @@
                 <p>Dispositivos individuales de máxima calidad listos para disfrutar.</p>
             </div>
 
-            <!-- LOS FAVORITOS -->
+            <!-- FAMILIA GALAXY (Ejemplo con Exrio bar y Garantía + Regalo) -->
             <div class="category-section">
-                <h3 class="category-title"><i class="fa-solid fa-star"></i> LOS FAVORITOS</h3>
+                <h3 class="category-title"><i class="fa-solid fa-earth-americas"></i> FAMILIA GALAXY</h3>
                 <div class="product-grid">
                     <div class="product-card">
-                        <div class="product-icon"><i class="fa-solid fa-bolt"></i></div>
-                        <h3>Vapesoul Dtl 20,000 hits</h3>
-                        <div
+                        <div class="product-badge">Regalo 🎁</div>
+                        <div class="product-icon"><i class="fa-solid fa-planet-ringed"></i></div>
+                        <h3>Exrio bar 25,000 hits</h3>
+                        <div class="product-info-details"><span class="warranty-yes">Garantía disponible</span></div>
+                        <div class="product-footer">
+                            <span class="price">$300 MXN</span>
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20el%20Exrio%20bar" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VISTA: CATÁLOGO MAYOREO -->
+    <section id="view-wholesale" class="view-section">
+        <div class="catalog-container">
+            <div class="catalog-header">
+                <h2>Catálogo <span>Mayoreo</span></h2>
+                <p>Precios especiales en compras al por mayor para negocios y distribuidores.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 BROSKI MARKET. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        function switchView(viewName) {
+            // Ocultar todas las secciones
+            document.querySelectorAll('.view-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Mostrar la sección seleccionada
+            document.getElementById('view-' + viewName).classList.add('active');
+            
+            // Gestionar el botón del header
+            const headerAction = document.getElementById('header-action');
+            if (viewName === 'home') {
+                headerAction.innerHTML = '';
+            } else {
+                headerAction.innerHTML = '<button class="back-home" onclick="switchView(\'home\')"><i class="fa-solid fa-arrow-left"></i> Inicio</button>';
+            }
+            
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
