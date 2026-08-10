@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VapeStore - Los Mejores Sabores y Dispositivos</title>
+    <title>BROSKI MARKET</title>
     <!-- Fuentes e Iconos -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary: #8a2be2;
-            --secondary: #00ffff;
-            --dark: #0f0f13;
-            --dark-card: #1a1a24;
-            --text: #ffffff;
-            --gray: #a0a0a0;
+            --bg-color: #0c0c0e;
+            --card-bg: #16161a;
+            --accent-gold: #f3c614;
+            --accent-gold-glow: rgba(243, 198, 20, 0.25);
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --border-color: rgba(243, 198, 20, 0.15);
         }
 
         * {
@@ -26,13 +27,13 @@
         }
 
         body {
-            background-color: var(--dark);
-            color: var(--text);
+            background-color: var(--bg-color);
+            color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* --- HEADER Y NAVEGACIÓN --- */
+        /* --- HEADER --- */
         header {
             position: fixed;
             top: 0;
@@ -42,303 +43,776 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 8%;
-            background: rgba(15, 15, 19, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(12, 12, 14, 0.95);
+            backdrop-filter: blur(12px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .logo {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            color: var(--text);
+            color: var(--text-main);
             text-decoration: none;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
         }
 
         .logo span {
-            color: var(--secondary);
-            text-shadow: 0 0 10px var(--secondary);
+            color: var(--accent-gold);
+            text-shadow: 0 0 12px var(--accent-gold-glow);
         }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
+        .back-home {
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
             text-decoration: none;
-            color: var(--text);
-            font-weight: 400;
-            transition: color 0.3s;
+            font-size: 0.9rem;
         }
 
-        .nav-links a:hover {
-            color: var(--secondary);
+        .back-home:hover {
+            background: var(--accent-gold);
+            color: var(--bg-color);
+            box-shadow: 0 0 15px var(--accent-gold-glow);
         }
 
-        /* --- SECCIÓN HERO (INICIO) --- */
-        .hero {
+        /* --- VISTAS --- */
+        .view-section {
+            display: none;
+            min-height: 100vh;
+            padding-top: 100px;
+        }
+
+        .view-section.active {
+            display: block;
+        }
+
+        /* --- VISTA INICIAL (HOME) --- */
+        .home-hero {
             height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            padding: 0 8%;
-            background: radial-gradient(circle at 70% 50%, rgba(138, 43, 226, 0.2) 0%, transparent 50%);
-            margin-top: 60px;
-        }
-
-        .hero-content {
-            max-width: 600px;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-
-        .hero-content h1 span {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-content p {
-            color: var(--gray);
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(45deg, var(--primary), #6a1b9a);
-            color: white;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 30px var(--secondary);
-        }
-
-        .hero-img {
-            font-size: 15rem;
-            color: var(--secondary);
-            text-shadow: 0 0 50px rgba(0, 255, 255, 0.3);
-            animation: float 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* --- SECCIÓN DE PRODUCTOS --- */
-        .products {
-            padding: 100px 8%;
-        }
-
-        .section-title {
+            justify-content: center;
             text-align: center;
-            font-size: 2.5rem;
+            padding: 0 5%;
+            background: radial-gradient(circle at 50% 40%, rgba(243, 198, 20, 0.08) 0%, transparent 60%);
+        }
+
+        .home-logo-circle {
+            width: 140px;
+            height: 140px;
+            border: 3px solid var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+            box-shadow: 0 0 30px var(--accent-gold-glow);
+            animation: pulse-glow 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(243, 198, 20, 0.2); }
+            50% { box-shadow: 0 0 40px rgba(243, 198, 20, 0.4); }
+        }
+
+        .home-logo-circle i {
+            font-size: 3.5rem;
+            color: var(--accent-gold);
+        }
+
+        .home-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .home-hero h1 span {
+            color: var(--accent-gold);
+            text-shadow: 0 0 15px var(--accent-gold-glow);
+        }
+
+        .home-hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .catalog-selectors {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-catalog {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 36px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 35px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-personal {
+            background: linear-gradient(135deg, #f3c614, #d4a707);
+            color: #0c0c0e;
+            box-shadow: 0 4px 20px var(--accent-gold-glow);
+            border: none;
+        }
+
+        .btn-personal:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(243, 198, 20, 0.4);
+        }
+
+        .btn-wholesale {
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 2px solid var(--accent-gold);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-wholesale:hover {
+            background: var(--accent-gold);
+            color: #0c0c0e;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px var(--accent-gold-glow);
+        }
+
+        /* --- CONTENEDOR DE CATÁLOGOS --- */
+        .catalog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 80px 20px;
+        }
+
+        .catalog-header {
+            text-align: center;
             margin-bottom: 50px;
         }
 
-        .section-title span {
-            color: var(--secondary);
+        .catalog-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .catalog-header h2 span {
+            color: var(--accent-gold);
+        }
+
+        .catalog-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* --- CATEGORÍAS Y PRODUCTOS --- */
+        .category-section {
+            margin-bottom: 60px;
+        }
+
+        .category-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .category-title i {
+            color: var(--accent-gold);
+            font-size: 1.5rem;
         }
 
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
+            gap: 25px;
         }
 
         .product-card {
-            background: var(--dark-card);
+            background: var(--card-bg);
             border-radius: 15px;
-            overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s, border-color 0.3s;
+            padding: 25px 20px;
             text-align: center;
-            padding: 30px 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--secondary);
+            transform: translateY(-8px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-gold-glow);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(243, 198, 20, 0.15);
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 10px;
+            border: 1px solid var(--accent-gold);
         }
 
         .product-icon {
-            font-size: 5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
+            font-size: 3.5rem;
+            color: var(--accent-gold);
+            margin: 15px 0 20px 0;
+            text-shadow: 0 0 10px var(--accent-gold-glow);
         }
 
         .product-card h3 {
-            font-size: 1.4rem;
+            font-size: 1.25rem;
+            font-weight: 600;
             margin-bottom: 10px;
         }
 
         .product-card p {
-            color: var(--gray);
-            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
             margin-bottom: 20px;
+            min-height: 40px;
+        }
+
+        .product-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .price {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: 20px;
-            display: block;
+            color: var(--accent-gold);
         }
 
-        /* --- SECCIÓN DE CONTACTO / PEDIDOS --- */
-        .contact {
-            padding: 80px 8%;
-            background: linear-gradient(180deg, var(--dark) 0%, var(--dark-card) 100%);
-            text-align: center;
-        }
-
-        .contact p {
-            color: var(--gray);
-            margin-bottom: 30px;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .whatsapp-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #25d366;
-            color: white;
-            padding: 15px 35px;
-            border-radius: 35px;
+        .btn-buy {
+            background: var(--accent-gold);
+            color: #0c0c0e;
+            padding: 8px 18px;
+            border-radius: 20px;
             text-decoration: none;
-            font-size: 1.2rem;
             font-weight: 600;
-            box-shadow: 0 0 20px rgba(37, 211, 102, 0.4);
-            transition: transform 0.3s;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
         }
 
-        .whatsapp-btn:hover {
-            transform: scale(1.05);
+        .btn-buy:hover {
+            background: #fff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
         /* --- FOOTER --- */
         footer {
             text-align: center;
             padding: 30px;
-            background: var(--dark);
-            color: var(--gray);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.9rem;
+            background: #08080a;
+            color: var(--text-muted);
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
         }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .hero {
+            .home-hero h1 {
+                font-size: 2.2rem;
+            }
+            .catalog-selectors {
                 flex-direction: column;
-                text-align: center;
+                width: 100%;
+                padding: 0 20px;
+            }
+            .btn-catalog {
+                width: 100%;
                 justify-content: center;
-                height: auto;
-                padding: 120px 8% 60px 8%;
             }
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            .hero-img {
-                margin-top: 40px;
-                font-size: 10rem;
-            }
-            .nav-links {
-                display: none; /* Simplificado para móviles */
+            header {
+                padding: 15px 5%;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navegación -->
+    <!-- Header Fijo -->
     <header>
-        <a href="#" class="logo">Vape<span>Store</span></a>
-        <ul class="nav-links">
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#productos">Productos</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
+        <div class="logo" onclick="switchView('home')">
+            <i class="fa-solid fa-crown"></i> BROSKI<span>MARKET</span>
+        </div>
+        <div id="header-action"></div>
     </header>
 
-    <!-- Sección Hero -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1>Eleva tu experiencia con el mejor <span>Vapeo</span></h1>
-            <p>Descubre dispositivos de alta gama, sabores intensos y la mejor calidad del mercado diseñados para tu estilo de vida.</p>
-            <a href="#productos" class="btn">Ver Catálogo</a>
-        </div>
-        <div class="hero-img">
-            <i class="fa-solid fa-smoking"></i>
-        </div>
-    </section>
-
-    <!-- Sección de Productos -->
-    <section id="productos" class="products">
-        <h2 class="section-title">Nuestros <span>Productos</span></h2>
-        
-        <div class="product-grid">
-            <!-- Producto 1 -->
-            <div class="product-card">
-                <div class="product-icon"><i class="fa-solid fa-bolt"></i></div>
-                <h3>Vape Pod Pro 5000</h3>
-                <p>Diseño compacto, batería de larga duración y sabor constante hasta la última calada.</p>
-                <span class="price">$25.00 USD</span>
-                <a href="#contacto" class="btn">Comprar</a>
+    <!-- VISTA INICIAL (HOME) -->
+    <section id="view-home" class="view-section active">
+        <div class="home-hero">
+            <div class="home-logo-circle">
+                <i class="fa-solid fa-fire-flame-curved"></i>
             </div>
-
-            <!-- Producto 2 -->
-            <div class="product-card">
-                <div class="product-icon"><i class="fa-solid fa-cloud"></i></div>
-                <h3>MaxiCloud Mod</h3>
-                <p>Para entusiastas de las nubes grandes. Potencia ajustable y control total de temperatura.</p>
-                <span class="price">$45.00 USD</span>
-                <a href="#contacto" class="btn">Comprar</a>
-            </div>
-
-            <!-- Producto 3 -->
-            <div class="product-card">
-                <div class="product-icon"><i class="fa-solid fa-droplet"></i></div>
-                <h3>E-Liquid Frutal (60ml)</h3>
-                <p>Combinación perfecta de frutas tropicales con un toque fresco de hielo. Sin nicotina disponible.</p>
-                <span class="price">$15.00 USD</span>
-                <a href="#contacto" class="btn">Comprar</a>
+            <h1>BIENVENIDOS A <span>BROSKI MARKET</span></h1>
+            <p>Selecciona el tipo de catálogo que deseas consultar para ver nuestra exclusiva selección de dispositivos y sabores.</p>
+            
+            <div class="catalog-selectors">
+                <button class="btn-catalog btn-personal" onclick="switchView('personal')">
+                    <i class="fa-solid fa-user"></i> Catálogo Personal
+                </button>
+                <button class="btn-catalog btn-wholesale" onclick="switchView('wholesale')">
+                    <i class="fa-solid fa-boxes-stacked"></i> Catálogo Mayoreo
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Sección de Contacto y Pedidos por WhatsApp -->
-    <section id="contacto" class="contact">
-        <h2 class="section-title">¿Listo para hacer tu <span>Pedido</span>?</h2>
-        <p>Hacemos envíos rápidos y seguros. Escríbenos directamente a nuestro WhatsApp para consultar stock y sabores disponibles.</p>
-        <!-- Reemplaza el número de teléfono con el tuyo con código de país -->
-        <a href="https://wa.me/TUNERODEWHATSAPP?text=Hola,%20estoy%20interesado%20en%20comprar%20un%20vape." class="whatsapp-btn" target="_blank">
-            <i class="fa-brands fa-whatsapp"></i> Pedir por WhatsApp
-        </a>
+    <!-- VISTA: CATÁLOGO PERSONAL -->
+    <section id="view-personal" class="view-section">
+        <div class="catalog-container">
+            <div class="catalog-header">
+                <h2>Catálogo <span>Personal</span></h2>
+                <p>Dispositivos individuales de máxima calidad listos para disfrutar.</p>
+            </div>
+
+            <!-- LOS MÁS CONSUMIDOS (3 opciones) -->
+            <div class="category-section">
+                <h3 class="category-title"><i class="fa-solid fa-fire"></i> LOS MÁS CONSUMIDOS</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <span class="product-badge">Top Ventas</span>
+                        <div class="product-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <h3>Waka SoMatch MB6000</h3>
+                        <p>Batería recargable con cápsulas intercambiables de gran duración y sabor intenso.</p>
+                        <div class="product-footer">
+                            <span class="price">$320 MXN</span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Waka%20SoMatch%20MB6000%20(Personal)" target="_blank" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <span class="product-badge">Favorito</span>
+                        <div class="product-icon"><i class="fa-solid fa-wind"></i></div>
+                        <h3>Fasta Burst 35000</h3>
+                        <p>Gran capacidad de caladas con doble malla para un rendimiento superior constante.</p>
+                        <div class="product-footer">
+                            <span class="price">$380 MXN</span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Fasta%20Burst%2035000%20(Personal)" target="_blank" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <span class="product-badge">Popular</span>
+                        <div class="product-icon"><i class="fa-solid fa-star"></i></div>
+                        <h3>Galaxy 12000 Puffs</h3>
+                        <p>Diseño futurista con indicador LED de batería y líquido en tiempo real.</p>
+                        <div class="product-footer">
+                            <span class="price">$350 MXN</span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Galaxy%2012000%20(Personal)" target="_blank" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAMILIA WAKA (3 opciones) -->
+            <div class="category-section">
+                <h3 class="category-title"><i class="fa-solid fa-shield-halved"></i> FAMILIA WAKA</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-cube"></i></div>
+                        <h3>Waka Smash 6000</h3>
+                        <p>Tecnología de malla avanzada para una producción de vapor suave y rica en sabor.</p>
+                        <div class="product-footer">
+                            <span class="price">$300 MXN</span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Waka%20Smash%206000" target="_blank" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-layer-group"></i></div>
+                        <h3>Waka Solo 2500</h3>
+                        <p>Elegante, práctico y listo para usar sin complicaciones desde el primer momento.</p>
+                        <div class="product-footer">
+                            <span class="price">$220 MXN</span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Waka%20Solo%202500" target="_blank" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-atom"></i></div>
+                        <h3>Waka proo 10000</h3>
+                        <p>Alta gama con control de flujo de aire ajustable para personalizar tu experiencia.</p>
+                        <div class="product-footer">
+                            <span class="price">$340 MXN</span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20el%20Waka%20proo%2010000" target="_blank" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAMILIA FASTA (4 opciones) -->
+            <div class="category-section">
+                <h3 class="category-title"><i class="fa-solid fa-gauge-high"></i> FAMILIA FASTA</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-gauge"></i></div>
+                        <h3>Fasta Turbo 10000</h3>
+                        <p>Modo turbo seleccionable para duplicar el impacto y la densidad del vapor.</p>
+                        <div class="product-footer">
+                            <span class="price">$330 MXN</span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Fasta%20Turbo%2010000" target="_blank" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+                        <h3>Fasta Burst 35000</h3>
+                        <p>Máxima duración en el mercado con pantalla inteligente integrada y gran potencia.</p>
+                        <div class="product-footer">
+                            <span class="price">$380 MXN</span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Fasta%20Burst%2035000" target="_blank" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-droplet"></i></div>
+                        <h3>Fasta Classic 5000</h3>
+                        <p>Diseño ergonómico compacto con sabores frutales refrescantes de larga duración.</p>
+                        <div class="product-footer">
+                            <span class="price">$270 MXN</span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Fasta%20Classic%205000" target="_blank" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-fire-flame-simple"></i></div>
+                        <h3>Fasta Pro Max</h3>
+                        <p>Rendimiento optimizado para los usuarios más exigentes que buscan consistencia.</p>
+                        <div class="product-footer">
+                            <span class="price">$350 MXN</span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Fasta%20Pro%20Max" target="_blank" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAMILIA GALAXY (3 opciones) -->
+            <div class="category-section">
+                <h3 class="category-title"><i class="fa-solid fa-meteor"></i> FAMILIA GALAXY</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-moon"></i></div>
+                        <h3>Galaxy 12000 Puffs</h3>
+                        <p>Experiencia espacial con sabores exóticos y batería recargable tipo C.</p>
+                        <div class="product-footer">
+                            <span class="price">$350 MXN</span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Galaxy%2012000" target="_blank" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-planet-ringed"></i></div>
+                        <h3>Galaxy Nebula 8000</h3>
+                        <p>Cuerpo suave al tacto con tecnología anti-fugas y caladas consistentes.</p>
+                        <div class="product-footer">
+                            <span class="price">$310 MXN</span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Galaxy%20Nebula%208000" target="_blank" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-sun"></i></div>
+                        <h3>Galaxy SuperNova 20k</h3>
+                        <p>Edición especial de gran capacidad con doble núcleo de calentamiento.</p>
+                        <div class="product-footer">
+                            <span class="price">$400 MXN</span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Galaxy%20SuperNova%2020k" target="_blank" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BROSKI CHOICE (3 opciones) -->
+            <div class="category-section">
+                <h3 class="category-title"><i class="fa-solid fa-crown"></i> BROSKI CHOICE</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <span class="product-badge">Exclusivo</span>
+                        <div class="product-icon"><i class="fa-solid fa-gem"></i></div>
+                        <h3>Broski Gold Edition</h3>
+                        <p>Selección especial curada por expertos con acabados premium y sabores únicos.</p>
+                        <div class="product-footer">
+                            <span class="price">$390 MXN</span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Broski%20Gold%20Edition" target="_blank" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <span class="product-badge">Especial</span>
+                        <div class="product-icon"><i class="fa-solid fa-award"></i></div>
+                        <h3>Broski Signature Blend</h3>
+                        <p>Edición limitada con mezclas tropicales y dulces diseñadas para destacar.</p>
+                        <div class="product-footer">
+                            <span class="price">$370 MXN</span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Broski%20Signature%20Blend" target="_blank" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <span class="product-badge">Top</span>
+                        <div class="product-icon"><i class="fa-solid fa-star-of-life"></i></div>
+                        <h3>Broski Master Pod</h3>
+                        <p>El estándar de oro en rendimiento, diseño y durabilidad de nuestra marca.</p>
+                        <div class="product-footer">
+                            <span class="price">$360 MXN</span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Broski%20Master%20Pod" target="_blank" class="btn-buy">Pedir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- VISTA: CATÁLOGO MAYOREO -->
+    <section id="view-wholesale" class="view-section">
+        <div class="catalog-container">
+            <div class="catalog-header">
+                <h2>Catálogo <span>Mayoreo</span></h2>
+                <p>Precios especiales para distribuidores y negocios. Mayoreo a partir de 10 piezas.</p>
+            </div>
+
+            <!-- LOS MÁS CONSUMIDOS (3 opciones) -->
+            <div class="category-section">
+                <h3 class="category-title"><i class="fa-solid fa-fire"></i> LOS MÁS CONSUMIDOS</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <span class="product-badge">Caja Mayoreo</span>
+                        <div class="product-icon"><i class="fa-solid fa-bolt"></i></div>
+                        <h3>Waka SoMatch MB6000 (Mayoreo)</h3>
+                        <p>Precio especial por caja / lote surtido de alta rotación en el mercado.</p>
+                        <div class="product-footer">
+                            <span class="price">$240 MXN <small style="color:var(--text-muted)">/pza</small></span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20cotizar%20Waka%20SoMatch%20por%20MAYOREO" target="_blank" class="btn-buy">Cotizar</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <span class="product-badge">Caja Mayoreo</span>
+                        <div class="product-icon"><i class="fa-solid fa-wind"></i></div>
+                        <h3>Fasta Burst 35000 (Mayoreo)</h3>
+                        <p>El equipo más pedido por negocios con excelente margen de ganancia.</p>
+                        <div class="product-footer">
+                            <span class="price">$290 MXN <small style="color:var(--text-muted)">/pza</small></span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20cotizar%20Fasta%20Burst%2035k%20por%20MAYOREO" target="_blank" class="btn-buy">Cotizar</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <span class="product-badge">Caja Mayoreo</span>
+                        <div class="product-icon"><i class="fa-solid fa-star"></i></div>
+                        <h3>Galaxy 12000 Puffs (Mayoreo)</h3>
+                        <p>Lotes surtidos con los sabores más buscados del segmento.</p>
+                        <div class="product-footer">
+                            <span class="price">$270 MXN <small style="color:var(--text-muted)">/pza</small></span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20cotizar%20Galaxy%2012000%20por%20MAYOREO" target="_blank" class="btn-buy">Cotizar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAMILIA WAKA (3 opciones) -->
+            <div class="category-section">
+                <h3 class="category-title"><i class="fa-solid fa-shield-halved"></i> FAMILIA WAKA</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-cube"></i></div>
+                        <h3>Waka Smash 6000 (Mayoreo)</h3>
+                        <p>Paquete mayorista directo de fábrica con máxima garantía de calidad.</p>
+                        <div class="product-footer">
+                            <span class="price">$230 MXN <small style="color:var(--text-muted)">/pza</small></span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Waka%20Smash%20Mayoreo" target="_blank" class="btn-buy">Cotizar</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-layer-group"></i></div>
+                        <h3>Waka Solo 2500 (Mayoreo)</h3>
+                        <p>Excelente opción económica para tiendas con alta rotación diaria.</p>
+                        <div class="product-footer">
+                            <span class="price">$160 MXN <small style="color:var(--text-muted)">/pza</small></span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Waka%20Solo%20Mayoreo" target="_blank" class="btn-buy">Cotizar</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-atom"></i></div>
+                        <h3>Waka proo 10000 (Mayoreo)</h3>
+                        <p>Dispositivos premium con precio preferencial por volumen.</p>
+                        <div class="product-footer">
+                            <span class="price">$260 MXN <small style="color:var(--text-muted)">/pza</small></span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Waka%20proo%20Mayoreo" target="_blank" class="btn-buy">Cotizar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAMILIA FASTA (4 opciones) -->
+            <div class="category-section">
+                <h3 class="category-title"><i class="fa-solid fa-gauge-high"></i> FAMILIA FASTA</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-gauge"></i></div>
+                        <h3>Fasta Turbo 10000 (Mayoreo)</h3>
+                        <p>Lote mayorista de Fasta Turbo con variedad completa de sabores.</p>
+                        <div class="product-footer">
+                            <span class="price">$250 MXN <small style="color:var(--text-muted)">/pza</small></span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Fasta%20Turbo%20Mayoreo" target="_blank" class="btn-buy">Cotizar</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+                        <h3>Fasta Burst 35000 (Mayoreo)</h3>
+                        <p>Alta demanda asegurada para tu local comercial con este modelo estrella.</p>
+                        <div class="product-footer">
+                            <span class="price">$290 MXN <small style="color:var(--text-muted)">/pza</small></span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Fasta%20Burst%20Mayoreo" target="_blank" class="btn-buy">Cotizar</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-droplet"></i></div>
+                        <h3>Fasta Classic 5000 (Mayoreo)</h3>
+                        <p>Cajas surtidas ideales para empezar tu negocio con bajo riesgo.</p>
+                        <div class="product-footer">
+                            <span class="price">$200 MXN <small style="color:var(--text-muted)">/pza</small></span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Fasta%20Classic%20Mayoreo" target="_blank" class="btn-buy">Cotizar</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-fire-flame-simple"></i></div>
+                        <h3>Fasta Pro Max (Mayoreo)</h3>
+                        <p>Modelos avanzados al mejor precio de mayoreo del mercado.</p>
+                        <div class="product-footer">
+                            <span class="price">$270 MXN <small style="color:var(--text-muted)">/pza</small></span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Fasta%20Pro%20Max%20Mayoreo" target="_blank" class="btn-buy">Cotizar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAMILIA GALAXY (3 opciones) -->
+            <div class="category-section">
+                <h3 class="category-title"><i class="fa-solid fa-meteor"></i> FAMILIA GALAXY</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-moon"></i></div>
+                        <h3>Galaxy 12000 Puffs (Mayoreo)</h3>
+                        <p>Precios por caja maestra para distribuidores autorizados.</p>
+                        <div class="product-footer">
+                            <span class="price">$270 MXN <small style="color:var(--text-muted)">/pza</small></span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Galaxy%2012k%20Mayoreo" target="_blank" class="btn-buy">Cotizar</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-planet-ringed"></i></div>
+                        <h3>Galaxy Nebula 8000 (Mayoreo)</h3>
+                        <p>Diseño y rendimiento con excelente margen de utilidad por pieza.</p>
+                        <div class="product-footer">
+                            <span class="price">$230 MXN <small style="color:var(--text-muted)">/pza</small></span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Galaxy%20Nebula%20Mayoreo" target="_blank" class="btn-buy">Cotizar</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-icon"><i class="fa-solid fa-sun"></i></div>
+                        <h3>Galaxy SuperNova 20k (Mayoreo)</h3>
+                        <p>La máxima capacidad de la familia Galaxy al precio de mayoreo más competitivo.</p>
+                        <div class="product-footer">
+                            <span class="price">$310 MXN <small style="color:var(--text-muted)">/pza</small></span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Galaxy%20SuperNova%20Mayoreo" target="_blank" class="btn-buy">Cotizar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BROSKI CHOICE (3 opciones) -->
+            <div class="category-section">
+                <h3 class="category-title"><i class="fa-solid fa-crown"></i> BROSKI CHOICE</h3>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <span class="product-badge">Exclusivo Mayoreo</span>
+                        <div class="product-icon"><i class="fa-solid fa-gem"></i></div>
+                        <h3>Broski Gold Edition (Mayoreo)</h3>
+                        <p>Lleva la línea exclusiva de Broski a tu negocio con precios de distribuidor.</p>
+                        <div class="product-footer">
+                            <span class="price">$300 MXN <small style="color:var(--text-muted)">/pza</small></span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Broski%20Gold%20Mayoreo" target="_blank" class="btn-buy">Cotizar</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <span class="product-badge">Especial Mayoreo</span>
+                        <div class="product-icon"><i class="fa-solid fa-award"></i></div>
+                        <h3>Broski Signature Blend (Mayoreo)</h3>
+                        <p>Mezclas únicas que garantizan clientes recurrentes en tu tienda.</p>
+                        <div class="product-footer">
+                            <span class="price">$280 MXN <small style="color:var(--text-muted)">/pza</small></span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Broski%20Signature%20Mayoreo" target="_blank" class="btn-buy">Cotizar</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <span class="product-badge">Top Mayoreo</span>
+                        <div class="product-icon"><i class="fa-solid fa-star-of-life"></i></div>
+                        <h3>Broski Master Pod (Mayoreo)</h3>
+                        <p>El estandarte de nuestra marca disponible para distribución mayorista.</p>
+                        <div class="product-footer">
+                            <span class="price">$275 MXN <small style="color:var(--text-muted)">/pza</small></span>
+                            <a href="https://wa.me/TUNUMERO?text=Hola,%20me%20interesa%20Broski%20Master%20Mayoreo" target="_blank" class="btn-buy">Cotizar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 VapeStore. Todos los derechos reservados. Prohibida la venta a menores de edad.</p>
+        <p>&copy; 2026 BROSKI MARKET. Todos los derechos reservados. Prohibida la venta a menores de edad.</p>
     </footer>
 
+    <!-- Script de Navegación de Vistas -->
+    <script>
+        function switchView(viewName) {
+            document.querySelectorAll('.view-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            const targetSection = document.getElementById('view-' + viewName);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            const headerAction = document.getElementById('header-action');
+            if (viewName === 'home') {
+                headerAction.innerHTML = '';
+            } else {
+                headerAction.innerHTML = '<button class="back-home" onclick="switchView(\'home\')"><i class="fa-solid fa-arrow-left"></i> Inicio</button>';
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
