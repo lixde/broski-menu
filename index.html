@@ -2,214 +2,105 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Productos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-        }
-        h1 {
-            text-align: center;
-            color: #222;
-            margin-bottom: 30px;
-        }
-        .catalog-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .product-card {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s;
-        }
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
-        .product-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            background-color: #eee;
-        }
-        .product-info {
-            padding: 15px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-        .product-name {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #111;
-            margin: 0 0 8px 0;
-        }
-        .product-flavor {
-            font-size: 0.95rem;
-            color: #666;
-            margin: 0;
-        }
-    </style>
 </head>
 <body>
-
     <h1>Catálogo de Productos</h1>
-
-    <div class="catalog-container">
-        <!-- Producto 1 -->
-        <div class="product-card">
-            <img src="image.png" alt="IPLAY X-Box Pro Max" class="product-image">
-            <div class="product-info">
-                <h3 class="product-name">IPLAY X-Box Pro Max</h3>
-                <p class="product-flavor">Sabor: Marlboro Rojo</p>
-            </div>
-        </div>
-
-        <!-- Producto 2 -->
-        <div class="product-card">
-            <img src="image_2.png" alt="Lost Angel Mate Kit 50K" class="product-image">
-            <div class="product-info">
-                <h3 class="product-name">Lost Angel Mate Kit 50K</h3>
-                <p class="product-flavor">Sabor: US Watermelon Ice</p>
-            </div>
-        </div>
-
-        <!-- Producto 3 -->
-        <div class="product-card">
-            <img src="image_3.png" alt="Funky Republic Fi3000" class="product-image">
-            <div class="product-info">
-                <h3 class="product-name">Funky Republic Fi3000</h3>
-                <p class="product-flavor">Sabor: Watermelon Delight</p>
-            </div>
-        </div>
-
-        <!-- Producto 4 -->
-        <div class="product-card">
-            <img src="image_4.png" alt="Moti Nova" class="product-image">
-            <div class="product-info">
-                <h3 class="product-name">Moti Nova</h3>
-                <p class="product-flavor">Sabor: Miami Mint</p>
-            </div>
-        </div>
-
-        <!-- Producto 5 -->
-        <div class="product-card">
-            <img src="image_5.png" alt="Geek Bar Ice Prince" class="product-image">
-            <div class="product-info">
-                <h3 class="product-name">Geek Bar Ice Prince</h3>
-                <p class="product-flavor">Sabor: Passionfruit Kiwi Ice</p>
-            </div>
-        </div>
-
-        <!-- Producto 6 -->
-        <div class="product-card">
-            <img src="image_6.png" alt="Fasta 40K" class="product-image">
-            <div class="product-info">
-                <h3 class="product-name">Fasta 40K</h3>
-                <p class="product-flavor">Sabor: Watermelon</p>
-            </div>
-        </div>
-
-        <!-- Producto 7 -->
-        <div class="product-card">
-            <img src="image_7.png" alt="Fasta Drop 50K" class="product-image">
-            <div class="product-info">
-                <h3 class="product-name">Fasta Drop 50K</h3>
-                <p class="product-flavor">Sabor: Caramel Banana</p>
-            </div>
-        </div>
-
-        <!-- Producto 8 -->
-        <div class="product-card">
-            <img src="image_8.png" alt="Exrio Bar FireX" class="product-image">
-            <div class="product-info">
-                <h3 class="product-name">Exrio Bar FireX</h3>
-                <p class="product-flavor">Sabor: Blue Rancher</p>
-            </div>
-        </div>
-
-        <!-- Producto 9 -->
-        <div class="product-card">
-            <img src="image_9.png" alt="Fasta 35000 Burst Series" class="product-image">
-            <div class="product-info">
-                <h3 class="product-name">Fasta 35000 (Burst Series)</h3>
-                <p class="product-flavor">Sabor: Matcha Cake / Matcha Frappuccino</p>
-            </div>
-        </div>
-
-        <!-- Producto 10 -->
-        <div class="product-card">
-            <img src="image_10.png" alt="Fasta 37000 Burst Series" class="product-image">
-            <div class="product-info">
-                <h3 class="product-name">Fasta 37000 (Burst Series)</h3>
-                <p class="product-flavor">Sabor: Watermelon Slush</p>
-            </div>
-        </div>
-
-        <!-- Producto 11 -->
-        <div class="product-card">
-            <img src="image_11.png" alt="Waka Burst 36000" class="product-image">
-            <div class="product-info">
-                <h3 class="product-name">Waka Burst 36000</h3>
-                <p class="product-flavor">Sabor: Cherry Bomb</p>
-            </div>
-        </div>
-
-        <!-- Producto 12 -->
-        <div class="product-card">
-            <img src="image_12.png" alt="Waka Jupiter 50000 / 35000" class="product-image">
-            <div class="product-info">
-                <h3 class="product-name">Waka Jupiter 50000 / 35000</h3>
-                <p class="product-flavor">Sabor: Sour Watermelon Peach</p>
-            </div>
-        </div>
-
-        <!-- Producto 13 -->
-        <div class="product-card">
-            <img src="image_13.png" alt="Waka Optimus 100K" class="product-image">
-            <div class="product-info">
-                <h3 class="product-name">Waka Optimus 100K</h3>
-                <p class="product-flavor">Sabor: Mr. Peach</p>
-            </div>
-        </div>
-
-        <!-- Producto 14 -->
-        <div class="product-card">
-            <img src="image_14.png" alt="Tyson Heavyweight 2.0 7000" class="product-image">
-            <div class="product-info">
-                <h3 class="product-name">Tyson Heavyweight 2.0 7000</h3>
-                <p class="product-flavor">Sabor: Clear</p>
-            </div>
-        </div>
-
-        <!-- Producto 15 -->
-        <div class="product-card">
-            <img src="image_15.png" alt="VapeSoul DTL" class="product-image">
-            <div class="product-info">
-                <h3 class="product-name">VapeSoul DTL</h3>
-                <p class="product-flavor">Sabor: Lemon Lime</p>
-            </div>
-        </div>
-
-        <!-- Producto 16 -->
-        <div class="product-card">
-            <img src="image_16.png" alt="Rodman by Aloha Sun 9100" class="product-image">
-            <div class="product-info">
-                <h3 class="product-name">Rodman by Aloha Sun 9100</h3>
-                <p class="product-flavor">Sabor: Açaí Berry</p>
-            </div>
-        </div>
+    
+    <div class="producto">
+        <img src="image.png" alt="IPLAY X-Box Pro Max" width="200">
+        <h3>IPLAY X-Box Pro Max</h3>
+        <p>Sabor: Marlboro Rojo</p>
     </div>
 
+    <div class="producto">
+        <img src="image_2.png" alt="Lost Angel Mate Kit 50K" width="200">
+        <h3>Lost Angel Mate Kit 50K</h3>
+        <p>Sabor: US Watermelon Ice</p>
+    </div>
+
+    <div class="producto">
+        <img src="image_3.png" alt="Funky Republic Fi3000" width="200">
+        <h3>Funky Republic Fi3000</h3>
+        <p>Sabor: Watermelon Delight</p>
+    </div>
+
+    <div class="producto">
+        <img src="image_4.png" alt="Moti Nova" width="200">
+        <h3>Moti Nova</h3>
+        <p>Sabor: Miami Mint</p>
+    </div>
+
+    <div class="producto">
+        <img src="image_5.png" alt="Geek Bar Ice Prince" width="200">
+        <h3>Geek Bar Ice Prince</h3>
+        <p>Sabor: Passionfruit Kiwi Ice</p>
+    </div>
+
+    <div class="producto">
+        <img src="image_6.png" alt="Fasta 40K" width="200">
+        <h3>Fasta 40K</h3>
+        <p>Sabor: Watermelon</p>
+    </div>
+
+    <div class="producto">
+        <img src="image_7.png" alt="Fasta Drop 50K" width="200">
+        <h3>Fasta Drop 50K</h3>
+        <p>Sabor: Caramel Banana</p>
+    </div>
+
+    <div class="producto">
+        <img src="image_8.png" alt="Exrio Bar FireX" width="200">
+        <h3>Exrio Bar FireX</h3>
+        <p>Sabor: Blue Rancher</p>
+    </div>
+
+    <div class="producto">
+        <img src="image_9.png" alt="Fasta 35000 Burst Series" width="200">
+        <h3>Fasta 35000 (Burst Series)</h3>
+        <p>Sabor: Matcha Cake / Matcha Frappuccino</p>
+    </div>
+
+    <div class="producto">
+        <img src="image_10.png" alt="Fasta 37000 Burst Series" width="200">
+        <h3>Fasta 37000 (Burst Series)</h3>
+        <p>Sabor: Watermelon Slush</p>
+    </div>
+
+    <div class="producto">
+        <img src="image_11.png" alt="Waka Burst 36000" width="200">
+        <h3>Waka Burst 36000</h3>
+        <p>Sabor: Cherry Bomb</p>
+    </div>
+
+    <div class="producto">
+        <img src="image_12.png" alt="Waka Jupiter 50000 / 35000" width="200">
+        <h3>Waka Jupiter 50000 / 35000</h3>
+        <p>Sabor: Sour Watermelon Peach</p>
+    </div>
+
+    <div class="producto">
+        <img src="image_13.png" alt="Waka Optimus 100K" width="200">
+        <h3>Waka Optimus 100K</h3>
+        <p>Sabor: Mr. Peach</p>
+    </div>
+
+    <div class="producto">
+        <img src="image_14.png" alt="Tyson Heavyweight 2.0 7000" width="200">
+        <h3>Tyson Heavyweight 2.0 7000</h3>
+        <p>Sabor: Clear</p>
+    </div>
+
+    <div class="producto">
+        <img src="image_15.png" alt="VapeSoul DTL" width="200">
+        <h3>VapeSoul DTL</h3>
+        <p>Sabor: Lemon Lime</p>
+    </div>
+
+    <div class="producto">
+        <img src="image_16.png" alt="Rodman by Aloha Sun 9100" width="200">
+        <h3>Rodman by Aloha Sun 9100</h3>
+        <p>Sabor: Açaí Berry</p>
+    </div>
 </body>
 </html>
