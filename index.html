@@ -3,424 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BROSKI MARKET</title>
-    <!-- Fuentes e Iconos -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>BROSKI MARKET - Catálogo Digital</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --bg-color: #0c0c0e;
-            --card-bg: #16161a;
-            --accent-gold: #f3c614;
-            --accent-gold-glow: rgba(243, 198, 20, 0.25);
-            --text-main: #ffffff;
-            --text-muted: #a0a0a0;
-            --border-color: rgba(243, 198, 20, 0.15);
-            --warning-color: #f87171;
-            --gift-color: #34d399;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* --- HEADER --- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background: rgba(12, 12, 14, 0.95);
-            backdrop-filter: blur(12px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-main);
-            text-decoration: none;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-
-        .logo span {
-            color: var(--accent-gold);
-            text-shadow: 0 0 12px var(--accent-gold-glow);
-        }
-
-        .back-home {
-            background: transparent;
-            border: 1px solid var(--accent-gold);
-            color: var(--accent-gold);
-            padding: 8px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .back-home:hover {
-            background: var(--accent-gold);
-            color: var(--bg-color);
-            box-shadow: 0 0 15px var(--accent-gold-glow);
-        }
-
-        /* --- VISTAS --- */
-        .view-section {
-            display: none;
-            min-height: 100vh;
-            padding-top: 100px;
-        }
-
-        .view-section.active {
-            display: block;
-        }
-
-        /* --- VISTA INICIAL (HOME) --- */
-        .home-hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 0 5%;
-            background: radial-gradient(circle at 50% 40%, rgba(243, 198, 20, 0.08) 0%, transparent 60%);
-        }
-
-        .home-logo-circle {
-            width: 140px;
-            height: 140px;
-            border: 3px solid var(--accent-gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 30px;
-            box-shadow: 0 0 30px var(--accent-gold-glow);
-            animation: pulse-glow 3s infinite ease-in-out;
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(243, 198, 20, 0.2); }
-            50% { box-shadow: 0 0 40px rgba(243, 198, 20, 0.4); }
-        }
-
-        .home-logo-circle i {
-            font-size: 3.5rem;
-            color: var(--accent-gold);
-        }
-
-        .home-hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            letter-spacing: 1px;
-        }
-
-        .home-hero h1 span {
-            color: var(--accent-gold);
-            text-shadow: 0 0 15px var(--accent-gold-glow);
-        }
-
-        .home-hero p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin-bottom: 40px;
-        }
-
-        .catalog-selectors {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .btn-catalog {
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            padding: 16px 36px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 35px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .btn-personal {
-            background: linear-gradient(135deg, #f3c614, #d4a707);
-            color: #0c0c0e;
-            box-shadow: 0 4px 20px var(--accent-gold-glow);
-            border: none;
-        }
-
-        .btn-personal:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(243, 198, 20, 0.4);
-        }
-
-        .btn-wholesale {
-            background: var(--card-bg);
-            color: var(--text-main);
-            border: 2px solid var(--accent-gold);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-wholesale:hover {
-            background: var(--accent-gold);
-            color: #0c0c0e;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px var(--accent-gold-glow);
-        }
-
-        /* --- CONTENEDOR DE CATÁLOGOS --- */
-        .catalog-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px 80px 20px;
-        }
-
-        .catalog-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .catalog-header h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--text-main);
-        }
-
-        .catalog-header h2 span {
-            color: var(--accent-gold);
-        }
-
-        .catalog-header p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* --- CATEGORÍAS Y PRODUCTOS --- */
-        .category-section {
-            margin-bottom: 60px;
-        }
-
-        .category-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--border-color);
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .category-title i {
-            color: var(--accent-gold);
-            font-size: 1.5rem;
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .product-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .product-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent-gold);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-gold-glow);
-        }
-
-        .product-img-container {
-            width: 100%;
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-            background: transparent;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .product-img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover .product-img {
-            transform: scale(1.05);
-        }
-
-        .product-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .product-info-details {
-            font-size: 0.85rem;
-            margin-bottom: 15px;
-            min-height: 35px;
-        }
-
-        .warranty-no {
-            color: var(--warning-color);
-            font-weight: 500;
-        }
-
-        .gift-yes {
-            color: var(--gift-color);
-            font-weight: 600;
-        }
-
-        .product-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: auto;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .price {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--accent-gold);
-        }
-
-        .btn-buy {
-            background: var(--accent-gold);
-            color: #0c0c0e;
-            padding: 8px 18px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85rem;
-            transition: all 0.2s ease;
-        }
-
-        .btn-buy:hover {
-            background: #fff;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            text-align: center;
-            padding: 30px;
-            background: #08080a;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border-color);
-            font-size: 0.85rem;
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .home-hero h1 {
-                font-size: 2.2rem;
-            }
-            .catalog-selectors {
-                flex-direction: column;
-                width: 100%;
-                padding: 0 20px;
-            }
-            .btn-catalog {
-                width: 100%;
-                justify-content: center;
-            }
-            header {
-                padding: 15px 5%;
-            }
-        }
-    </style>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Header Fijo -->
-    <header>
-        <div class="logo" onclick="switchView('home')">
-            <i class="fa-solid fa-crown"></i> BROSKI<span>MARKET</span>
+    <!-- NAVBAR / HEADER -->
+    <header class="navbar">
+        <div class="logo">
+            <i class="fa-solid fa-crown logo-icon"></i>
+            <span>BROSKI <strong>MARKET</strong></span>
         </div>
-        <div id="header-action"></div>
+        <button id="btn-home" class="btn-home-nav" style="display: none;" onclick="showHome()">
+            <i class="fa-solid fa-arrow-left"></i> Inicio
+        </button>
     </header>
 
-    <!-- VISTA INICIAL (HOME) -->
+    <!-- VISTA PRINCIPAL (SELECCIÓN DE CATÁLOGO) -->
     <section id="view-home" class="view-section active">
-        <div class="home-hero">
-            <div class="home-logo-circle">
-                <i class="fa-solid fa-fire-flame-curved"></i>
-            </div>
-            <h1>BIENVENIDO A <span>BROSKI MARKET</span></h1>
-            <p>Selecciona el catálogo que deseas consultar para ver nuestra selección de vapes.</p>
+        <div class="home-container">
+            <h1 class="home-title">¿Qué estás buscando hoy?</h1>
+            <p class="home-subtitle">Elige el catálogo que deseas explorar y descubre nuestros mejores productos.</p>
             
-            <div class="catalog-selectors">
-                <button class="btn-catalog btn-personal" onclick="switchView('personal')">
-                    <i class="fa-solid fa-user"></i> Catálogo Personal
-                </button>
-                <button class="btn-catalog btn-wholesale" onclick="switchView('wholesale')">
-                    <i class="fa-solid fa-boxes-stacked"></i> Catálogo Mayoreo
-                </button>
+            <div class="portal-grid">
+                <!-- Tarjeta Menudeo -->
+                <div class="portal-card" onclick="showCatalog('retail')">
+                    <div class="portal-icon">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                    </div>
+                    <h2>Menudeo</h2>
+                    <p>Compra tus vapes favoritos por unidad al mejor precio.</p>
+                    <button class="btn-portal">Ver Menudeo <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
+
+                <!-- Tarjeta Mayoreo -->
+                <div class="portal-card wholesale-card" onclick="showCatalog('wholesale')">
+                    <div class="portal-badge">PROMO</div>
+                    <div class="portal-icon">
+                        <i class="fa-solid fa-boxes-packing"></i>
+                    </div>
+                    <h2>Mayoreo</h2>
+                    <p>Precios especiales a partir de 10 piezas para revendedores.</p>
+                    <button class="btn-portal btn-gold">Ver Mayoreo <i class="fa-solid fa-arrow-right"></i></button>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- VISTA: CATÁLOGO PERSONAL -->
-    <section id="view-personal" class="view-section">
+    <!-- VISTA: CATÁLOGO MENUDEO -->
+    <section id="view-retail" class="view-section">
         <div class="catalog-container">
             <div class="catalog-header">
-                <h2>Catálogo <span>Personal</span></h2>
-                <p>Vapes de máxima calidad para disfrutar al máximo.</p>
+                <h2>Catálogo <span>Menudeo</span></h2>
+                <p>Explora nuestras marcas y modelos disponibles. Vapes de máxima calidad para disfrutar al máximo.</p>
             </div>
 
             <!-- LOS FAVORITOS -->
@@ -430,19 +71,19 @@
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/4wQYmgrg/IMG-4789.jpg" alt="Rodman 9,100 hits" class="product-img"></div>
                         <h3>Rodman 9,100 hits</h3>
-                        <div class="product-info-details"><span class="warranty-no">Sin garantía por defecto</span></div>
+                        <div class="product-info-details">Sin garantía por defecto</div>
                         <div class="product-footer">
                             <span class="price">$250 MXN</span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20Rodman%209,100%20hits%20(Personal)" target="_blank" class="btn-buy">Pedir</a>
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20comprar%20Rodman%209,100%20hits%20a%20menudeo" target="_blank" class="btn-buy">Pedir</a>
                         </div>
                     </div>
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/pvZjYkXF/IMG-4790.jpg" alt="Tyson 7,000 hits" class="product-img"></div>
                         <h3>Tyson 7,000 hits</h3>
-                        <div class="product-info-details"><span class="warranty-no">Sin garantía por defecto</span></div>
+                        <div class="product-info-details">Sin garantía por defecto</div>
                         <div class="product-footer">
                             <span class="price">$250 MXN</span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20Tyson%207,000%20hits%20(Personal)" target="_blank" class="btn-buy">Pedir</a>
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20comprar%20Tyson%207,000%20hits%20a%20menudeo" target="_blank" class="btn-buy">Pedir</a>
                         </div>
                     </div>
                 </div>
@@ -455,28 +96,28 @@
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/Ld4QXxVJ/IMG-4795.jpg" alt="Waka 36,000 hits" class="product-img"></div>
                         <h3>Waka 36,000 hits</h3>
-                        <div class="product-info-details" style="color: var(--text-muted);">Garantía disponible</div>
+                        <div class="product-info-details">1 semana de garantía por falla de fábrica</div>
                         <div class="product-footer">
-                            <span class="price">$500 MXN</span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20Waka%2036,000%20hits%20(Personal)" target="_blank" class="btn-buy">Pedir</a>
+                            <span class="price">$350 MXN</span>
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20comprar%20Waka%2036,000%20hits%20a%20menudeo" target="_blank" class="btn-buy">Pedir</a>
                         </div>
                     </div>
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/xSg4xmDV/IMG-4793.jpg" alt="Waka 50,000 hits" class="product-img"></div>
                         <h3>Waka 50,000 hits</h3>
-                        <div class="product-info-details" style="color: var(--text-muted);">Garantía disponible</div>
+                        <div class="product-info-details">1 semana de garantía por falla de fábrica</div>
                         <div class="product-footer">
-                            <span class="price">$550 MXN</span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20Waka%2050,000%20hits%20(Personal)" target="_blank" class="btn-buy">Pedir</a>
+                            <span class="price">$400 MXN</span>
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20comprar%20Waka%2050,000%20hits%20a%20menudeo" target="_blank" class="btn-buy">Pedir</a>
                         </div>
                     </div>
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/fGP4pK1F/IMG-4792.jpg" alt="Waka 100,000 hits" class="product-img"></div>
                         <h3>Waka 100,000 hits</h3>
-                        <div class="product-info-details"><span class="gift-yes">🎁 Incluye vape de regalo</span></div>
+                        <div class="product-info-details">1 semana de garantía por falla de fábrica</div>
                         <div class="product-footer">
-                            <span class="price">$700 MXN</span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20Waka%20100,000%20hits%20(Personal)" target="_blank" class="btn-buy">Pedir</a>
+                            <span class="price">$550 MXN</span>
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20comprar%20Waka%20100,000%20hits%20a%20menudeo" target="_blank" class="btn-buy">Pedir</a>
                         </div>
                     </div>
                 </div>
@@ -489,19 +130,19 @@
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/5W8777hz/IMG-4800.jpg" alt="Fasta 40,000 hits" class="product-img"></div>
                         <h3>Fasta 40,000 hits</h3>
-                        <div class="product-info-details" style="color: var(--text-muted);">Garantía disponible</div>
+                        <div class="product-info-details">1 semana de garantía por falla de fábrica</div>
                         <div class="product-footer">
-                            <span class="price">$470 MXN</span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20Fasta%2040,000%20hits%20(Personal)" target="_blank" class="btn-buy">Pedir</a>
+                            <span class="price">$380 MXN</span>
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20comprar%20Fasta%2040,000%20hits%20a%20menudeo" target="_blank" class="btn-buy">Pedir</a>
                         </div>
                     </div>
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/KpymgdNx/IMG-4801.jpg" alt="Fasta 50,000 hits" class="product-img"></div>
                         <h3>Fasta 50,000 hits</h3>
-                        <div class="product-info-details" style="color: var(--text-muted);">Garantía disponible</div>
+                        <div class="product-info-details">1 semana de garantía por falla de fábrica</div>
                         <div class="product-footer">
-                            <span class="price">$500 MXN</span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20Fasta%2050,000%20hits%20(Personal)" target="_blank" class="btn-buy">Pedir</a>
+                            <span class="price">$420 MXN</span>
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20comprar%20Fasta%2050,000%20hits%20a%20menudeo" target="_blank" class="btn-buy">Pedir</a>
                         </div>
                     </div>
                 </div>
@@ -514,19 +155,19 @@
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/PzDpgfpY/IMG-4804.jpg" alt="Moti 50,000 hits" class="product-img"></div>
                         <h3>Moti 50,000 hits</h3>
-                        <div class="product-info-details"><span class="warranty-no">Sin garantía por defecto</span></div>
+                        <div class="product-info-details">1 semana de garantía por falla de fábrica</div>
                         <div class="product-footer">
-                            <span class="price">$350 MXN</span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20Moti%2050,000%20hits%20(Personal)" target="_blank" class="btn-buy">Pedir</a>
+                            <span class="price">$400 MXN</span>
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20comprar%20Moti%2050,000%20hits%20a%20menudeo" target="_blank" class="btn-buy">Pedir</a>
                         </div>
                     </div>
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/Cpt990sR/IMG-4803.jpg" alt="Exrio bar 25,000 hits" class="product-img"></div>
                         <h3>Exrio bar 25,000 hits</h3>
-                        <div class="product-info-details"><span class="warranty-no">Sin garantía por defecto</span></div>
+                        <div class="product-info-details">Sin garantía por defecto</div>
                         <div class="product-footer">
                             <span class="price">$300 MXN</span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20Exrio%20bar%2025,000%20hits%20(Personal)" target="_blank" class="btn-buy">Pedir</a>
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20comprar%20Exrio%20bar%2025,000%20hits%20a%20menudeo" target="_blank" class="btn-buy">Pedir</a>
                         </div>
                     </div>
                 </div>
@@ -539,19 +180,19 @@
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/jZGkLy8X/IMG-4808.jpg" alt="Funky republic 3,000 hits" class="product-img"></div>
                         <h3>Funky republic 3,000 hits</h3>
-                        <div class="product-info-details"><span class="warranty-no">Sin garantía por defecto</span></div>
+                        <div class="product-info-details">Sin garantía por defecto</div>
                         <div class="product-footer">
-                            <span class="price">$80 MXN</span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20Funky%20republic%203,000%20hits%20(Personal)" target="_blank" class="btn-buy">Pedir</a>
+                            <span class="price">$200 MXN</span>
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20comprar%20Funky%20republic%203,000%20hits%20a%20menudeo" target="_blank" class="btn-buy">Pedir</a>
                         </div>
                     </div>
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/ym3RJw4K/IMG-4810.jpg" alt="Lost Angel 50,000 hits" class="product-img"></div>
                         <h3>Lost Angel 50,000 hits</h3>
-                        <div class="product-info-details"><span class="gift-yes">🎁 Incluye vape de regalo</span></div>
+                        <div class="product-info-details">1 semana de garantía por falla de fábrica</div>
                         <div class="product-footer">
-                            <span class="price">$450 MXN</span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20Lost%20Angel%2050,000%20hits%20(Personal)" target="_blank" class="btn-buy">Pedir</a>
+                            <span class="price">$400 MXN</span>
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20comprar%20Lost%20Angel%2050,000%20hits%20a%20menudeo" target="_blank" class="btn-buy">Pedir</a>
                         </div>
                     </div>
                 </div>
@@ -565,7 +206,7 @@
         <div class="catalog-container">
             <div class="catalog-header">
                 <h2>Catálogo <span>Mayoreo</span></h2>
-                <p>⚠️ El mayoreo aplica a partir de 10 piezas. El precio indicado es por 1 pieza (Ej. Rodman $125 significa que ese es el precio unitario comprando 10).</p>
+                <p>⚠️ El mayoreo aplica a partir de 10 piezas. Solicita tu cotización personalizada enviando un mensaje directo.</p>
             </div>
 
             <!-- LOS FAVORITOS -->
@@ -575,19 +216,21 @@
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/4wQYmgrg/IMG-4789.jpg" alt="Rodman 9,100 hits" class="product-img"></div>
                         <h3>Rodman 9,100 hits</h3>
-                        <div class="product-info-details" style="color: var(--text-muted);">Precio unitario por mayoreo</div>
-                        <div class="product-footer">
-                            <span class="price">$125 MXN <small style="color:var(--text-muted)">/pza</small></span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Rodman%209,100%20hits" target="_blank" class="btn-buy">Cotizar</a>
+                        <div class="product-info-details" style="color: var(--text-muted);">Venta al por mayor</div>
+                        <div class="product-footer" style="justify-content: center; border-top: none;">
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Rodman%209,100%20hits" target="_blank" class="btn-buy" style="width: 100%; text-align: center; padding: 12px; font-size: 1rem; background: linear-gradient(135deg, #f3c614, #d4a707); font-weight: 700; box-shadow: 0 4px 15px var(--accent-gold-glow);">
+                                <i class="fa-brands fa-whatsapp"></i> Cotizar Mayoreo
+                            </a>
                         </div>
                     </div>
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/pvZjYkXF/IMG-4790.jpg" alt="Tyson 7,000 hits" class="product-img"></div>
                         <h3>Tyson 7,000 hits</h3>
-                        <div class="product-info-details" style="color: var(--text-muted);">Precio unitario por mayoreo</div>
-                        <div class="product-footer">
-                            <span class="price">$125 MXN <small style="color:var(--text-muted)">/pza</small></span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Tyson%207,000%20hits" target="_blank" class="btn-buy">Cotizar</a>
+                        <div class="product-info-details" style="color: var(--text-muted);">Venta al por mayor</div>
+                        <div class="product-footer" style="justify-content: center; border-top: none;">
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Tyson%207,000%20hits" target="_blank" class="btn-buy" style="width: 100%; text-align: center; padding: 12px; font-size: 1rem; background: linear-gradient(135deg, #f3c614, #d4a707); font-weight: 700; box-shadow: 0 4px 15px var(--accent-gold-glow);">
+                                <i class="fa-brands fa-whatsapp"></i> Cotizar Mayoreo
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -600,28 +243,31 @@
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/Ld4QXxVJ/IMG-4795.jpg" alt="Waka 36,000 hits" class="product-img"></div>
                         <h3>Waka 36,000 hits</h3>
-                        <div class="product-info-details" style="color: var(--text-muted);">Precio unitario por mayoreo</div>
-                        <div class="product-footer">
-                            <span class="price">$300 MXN <small style="color:var(--text-muted)">/pza</small></span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Waka%2036,000%20hits" target="_blank" class="btn-buy">Cotizar</a>
+                        <div class="product-info-details" style="color: var(--text-muted);">Venta al por mayor</div>
+                        <div class="product-footer" style="justify-content: center; border-top: none;">
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Waka%2036,000%20hits" target="_blank" class="btn-buy" style="width: 100%; text-align: center; padding: 12px; font-size: 1rem; background: linear-gradient(135deg, #f3c614, #d4a707); font-weight: 700; box-shadow: 0 4px 15px var(--accent-gold-glow);">
+                                <i class="fa-brands fa-whatsapp"></i> Cotizar Mayoreo
+                            </a>
                         </div>
                     </div>
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/xSg4xmDV/IMG-4793.jpg" alt="Waka 50,000 hits" class="product-img"></div>
                         <h3>Waka 50,000 hits</h3>
-                        <div class="product-info-details" style="color: var(--text-muted);">Precio unitario por mayoreo</div>
-                        <div class="product-footer">
-                            <span class="price">$390 MXN <small style="color:var(--text-muted)">/pza</small></span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Waka%2050,000%20hits" target="_blank" class="btn-buy">Cotizar</a>
+                        <div class="product-info-details" style="color: var(--text-muted);">Venta al por mayor</div>
+                        <div class="product-footer" style="justify-content: center; border-top: none;">
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Waka%2050,000%20hits" target="_blank" class="btn-buy" style="width: 100%; text-align: center; padding: 12px; font-size: 1rem; background: linear-gradient(135deg, #f3c614, #d4a707); font-weight: 700; box-shadow: 0 4px 15px var(--accent-gold-glow);">
+                                <i class="fa-brands fa-whatsapp"></i> Cotizar Mayoreo
+                            </a>
                         </div>
                     </div>
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/fGP4pK1F/IMG-4792.jpg" alt="Waka 100,000 hits" class="product-img"></div>
                         <h3>Waka 100,000 hits</h3>
-                        <div class="product-info-details" style="color: var(--text-muted);">Precio unitario por mayoreo</div>
-                        <div class="product-footer">
-                            <span class="price">$450 MXN <small style="color:var(--text-muted)">/pza</small></span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Waka%20100,000%20hits" target="_blank" class="btn-buy">Cotizar</a>
+                        <div class="product-info-details" style="color: var(--text-muted);">Venta al por mayor</div>
+                        <div class="product-footer" style="justify-content: center; border-top: none;">
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Waka%20100,000%20hits" target="_blank" class="btn-buy" style="width: 100%; text-align: center; padding: 12px; font-size: 1rem; background: linear-gradient(135deg, #f3c614, #d4a707); font-weight: 700; box-shadow: 0 4px 15px var(--accent-gold-glow);">
+                                <i class="fa-brands fa-whatsapp"></i> Cotizar Mayoreo
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -634,19 +280,21 @@
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/5W8777hz/IMG-4800.jpg" alt="Fasta 40,000 hits" class="product-img"></div>
                         <h3>Fasta 40,000 hits</h3>
-                        <div class="product-info-details" style="color: var(--text-muted);">Precio unitario por mayoreo</div>
-                        <div class="product-footer">
-                            <span class="price">$240 MXN <small style="color:var(--text-muted)">/pza</small></span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Fasta%2040,000%20hits" target="_blank" class="btn-buy">Cotizar</a>
+                        <div class="product-info-details" style="color: var(--text-muted);">Venta al por mayor</div>
+                        <div class="product-footer" style="justify-content: center; border-top: none;">
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Fasta%2040,000%20hits" target="_blank" class="btn-buy" style="width: 100%; text-align: center; padding: 12px; font-size: 1rem; background: linear-gradient(135deg, #f3c614, #d4a707); font-weight: 700; box-shadow: 0 4px 15px var(--accent-gold-glow);">
+                                <i class="fa-brands fa-whatsapp"></i> Cotizar Mayoreo
+                            </a>
                         </div>
                     </div>
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/KpymgdNx/IMG-4801.jpg" alt="Fasta 50,000 hits" class="product-img"></div>
                         <h3>Fasta 50,000 hits</h3>
-                        <div class="product-info-details" style="color: var(--text-muted);">Precio unitario por mayoreo</div>
-                        <div class="product-footer">
-                            <span class="price">$250 MXN <small style="color:var(--text-muted)">/pza</small></span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Fasta%2050,000%20hits" target="_blank" class="btn-buy">Cotizar</a>
+                        <div class="product-info-details" style="color: var(--text-muted);">Venta al por mayor</div>
+                        <div class="product-footer" style="justify-content: center; border-top: none;">
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Fasta%2050,000%20hits" target="_blank" class="btn-buy" style="width: 100%; text-align: center; padding: 12px; font-size: 1rem; background: linear-gradient(135deg, #f3c614, #d4a707); font-weight: 700; box-shadow: 0 4px 15px var(--accent-gold-glow);">
+                                <i class="fa-brands fa-whatsapp"></i> Cotizar Mayoreo
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -659,19 +307,21 @@
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/PzDpgfpY/IMG-4804.jpg" alt="Moti 50,000 hits" class="product-img"></div>
                         <h3>Moti 50,000 hits</h3>
-                        <div class="product-info-details" style="color: var(--text-muted);">Precio unitario por mayoreo</div>
-                        <div class="product-footer">
-                            <span class="price">$185 MXN <small style="color:var(--text-muted)">/pza</small></span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Moti%2050,000%20hits" target="_blank" class="btn-buy">Cotizar</a>
+                        <div class="product-info-details" style="color: var(--text-muted);">Venta al por mayor</div>
+                        <div class="product-footer" style="justify-content: center; border-top: none;">
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Moti%2050,000%20hits" target="_blank" class="btn-buy" style="width: 100%; text-align: center; padding: 12px; font-size: 1rem; background: linear-gradient(135deg, #f3c614, #d4a707); font-weight: 700; box-shadow: 0 4px 15px var(--accent-gold-glow);">
+                                <i class="fa-brands fa-whatsapp"></i> Cotizar Mayoreo
+                            </a>
                         </div>
                     </div>
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/Cpt990sR/IMG-4803.jpg" alt="Exrio bar 25,000 hits" class="product-img"></div>
                         <h3>Exrio bar 25,000 hits</h3>
-                        <div class="product-info-details" style="color: var(--text-muted);">Precio unitario por mayoreo</div>
-                        <div class="product-footer">
-                            <span class="price">$150 MXN <small style="color:var(--text-muted)">/pza</small></span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Exrio%20bar%2025,000%20hits" target="_blank" class="btn-buy">Cotizar</a>
+                        <div class="product-info-details" style="color: var(--text-muted);">Venta al por mayor</div>
+                        <div class="product-footer" style="justify-content: center; border-top: none;">
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Exrio%20bar%2025,000%20hits" target="_blank" class="btn-buy" style="width: 100%; text-align: center; padding: 12px; font-size: 1rem; background: linear-gradient(135deg, #f3c614, #d4a707); font-weight: 700; box-shadow: 0 4px 15px var(--accent-gold-glow);">
+                                <i class="fa-brands fa-whatsapp"></i> Cotizar Mayoreo
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -684,19 +334,21 @@
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/jZGkLy8X/IMG-4808.jpg" alt="Funky republic 3,000 hits" class="product-img"></div>
                         <h3>Funky republic 3,000 hits</h3>
-                        <div class="product-info-details" style="color: var(--text-muted);">Precio unitario por mayoreo</div>
-                        <div class="product-footer">
-                            <span class="price">$50 MXN <small style="color:var(--text-muted)">/pza</small></span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Funky%20republic%203,000%20hits" target="_blank" class="btn-buy">Cotizar</a>
+                        <div class="product-info-details" style="color: var(--text-muted);">Venta al por mayor</div>
+                        <div class="product-footer" style="justify-content: center; border-top: none;">
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Funky%20republic%203,000%20hits" target="_blank" class="btn-buy" style="width: 100%; text-align: center; padding: 12px; font-size: 1rem; background: linear-gradient(135deg, #f3c614, #d4a707); font-weight: 700; box-shadow: 0 4px 15px var(--accent-gold-glow);">
+                                <i class="fa-brands fa-whatsapp"></i> Cotizar Mayoreo
+                            </a>
                         </div>
                     </div>
                     <div class="product-card">
                         <div class="product-img-container"><img src="https://i.ibb.co/ym3RJw4K/IMG-4810.jpg" alt="Lost Angel 50,000 hits" class="product-img"></div>
                         <h3>Lost Angel 50,000 hits</h3>
-                        <div class="product-info-details" style="color: var(--text-muted);">Precio unitario por mayoreo</div>
-                        <div class="product-footer">
-                            <span class="price">$220 MXN <small style="color:var(--text-muted)">/pza</small></span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Lost%20Angel%2050,000%20hits" target="_blank" class="btn-buy">Cotizar</a>
+                        <div class="product-info-details" style="color: var(--text-muted);">Venta al por mayor</div>
+                        <div class="product-footer" style="justify-content: center; border-top: none;">
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20cotizar%20mayoreo%20de%20Lost%20Angel%2050,000%20hits" target="_blank" class="btn-buy" style="width: 100%; text-align: center; padding: 12px; font-size: 1rem; background: linear-gradient(135deg, #f3c614, #d4a707); font-weight: 700; box-shadow: 0 4px 15px var(--accent-gold-glow);">
+                                <i class="fa-brands fa-whatsapp"></i> Cotizar Mayoreo
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -705,30 +357,29 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 BROSKI MARKET. Todos los derechos reservados. Prohibida la venta a menores de edad.</p>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>&copy; 2026 BROSKI MARKET. Todos los derechos reservados.</p>
     </footer>
 
-    <!-- Script de Navegación de Vistas -->
+    <!-- SCRIPT PARA NAVEGACIÓN -->
     <script>
-        function switchView(viewName) {
-            document.querySelectorAll('.view-section').forEach(section => {
-                section.classList.remove('active');
-            });
+        function showCatalog(type) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.getElementById('btn-home').style.display = 'flex';
 
-            const targetSection = document.getElementById('view-' + viewName);
-            if (targetSection) {
-                targetSection.classList.add('active');
+            if (type === 'retail') {
+                document.getElementById('view-retail').classList.add('active');
+            } else if (type === 'wholesale') {
+                document.getElementById('view-wholesale').classList.add('active');
             }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-            const headerAction = document.getElementById('header-action');
-            if (viewName === 'home') {
-                headerAction.innerHTML = '';
-            } else {
-                headerAction.innerHTML = '<button class="back-home" onclick="switchView(\'home\')"><i class="fa-solid fa-arrow-left"></i> Inicio</button>';
-            }
-
+        function showHome() {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.getElementById('view-home').classList.add('active');
+            document.getElementById('btn-home').style.display = 'none';
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
