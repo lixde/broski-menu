@@ -220,6 +220,90 @@
             box-shadow: 0 6px 25px var(--accent-gold-glow);
         }
 
+        /* --- PESTAÑA EMERGENTE / BANNER WHATSAPP --- */
+        .whatsapp-popup {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: var(--card-bg);
+            border: 1px solid var(--whatsapp-color);
+            border-radius: 16px;
+            padding: 18px 22px;
+            max-width: 330px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 20px var(--whatsapp-glow);
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            animation: slide-up 0.5s ease-out;
+        }
+
+        @keyframes slide-up {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .whatsapp-popup-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .whatsapp-popup-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .whatsapp-popup-title i {
+            color: var(--whatsapp-color);
+            font-size: 1.3rem;
+        }
+
+        .whatsapp-close-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+        }
+
+        .whatsapp-close-btn:hover {
+            color: var(--text-main);
+        }
+
+        .whatsapp-popup p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .btn-whatsapp-join {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--whatsapp-color);
+            color: #ffffff;
+            padding: 10px 16px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px var(--whatsapp-glow);
+        }
+
+        .btn-whatsapp-join:hover {
+            background: #20ba5a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.5);
+        }
+
         /* --- CONTENEDOR DE CATÁLOGOS --- */
         .catalog-container {
             max-width: 1200px;
@@ -425,6 +509,12 @@
             header {
                 padding: 15px 5%;
             }
+            .whatsapp-popup {
+                bottom: 15px;
+                right: 15px;
+                left: 15px;
+                max-width: none;
+            }
         }
     </style>
 </head>
@@ -458,6 +548,22 @@
                     <i class="fa-solid fa-dharmachakra"></i> Ruleta Misteriosa
                 </a>
             </div>
+        </div>
+
+        <!-- Pestaña Emergente / Banner de WhatsApp -->
+        <div id="whatsapp-popup" class="whatsapp-popup">
+            <div class="whatsapp-popup-header">
+                <div class="whatsapp-popup-title">
+                    <i class="fa-brands fa-whatsapp"></i> Grupo Oficial
+                </div>
+                <button class="whatsapp-close-btn" onclick="closeWhatsappPopup()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <p>Únete al grupo para promociones exclusivas</p>
+            <a href="https://chat.whatsapp.com/LYRSoHhbDi9FQucbDRF0Bt?s=cl&p=i&ilr=4" target="_blank" class="btn-whatsapp-join">
+                <i class="fa-brands fa-whatsapp"></i> Unirse al Grupo
+            </a>
         </div>
     </section>
 
@@ -745,7 +851,7 @@
         <p>&copy; 2026 BROSKI MARKET. Todos los derechos reservados. Prohibida la venta a menores de edad.</p>
     </footer>
 
-    <!-- Script de Navegación de Vistas -->
+    <!-- Script de Navegación de Vistas y Popup -->
     <script>
         function switchView(viewName) {
             document.querySelectorAll('.view-section').forEach(section => {
@@ -765,6 +871,13 @@
             }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeWhatsappPopup() {
+            const popup = document.getElementById('whatsapp-popup');
+            if (popup) {
+                popup.style.display = 'none';
+            }
         }
     </script>
 </body>
