@@ -102,13 +102,13 @@
 
         /* --- VISTA INICIAL (HOME) --- */
         .home-hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 0 5%;
+            padding: 40px 5%;
             background: radial-gradient(circle at 50% 40%, rgba(243, 198, 20, 0.08) 0%, transparent 60%);
         }
 
@@ -156,15 +156,19 @@
 
         .catalog-selectors {
             display: flex;
+            flex-direction: column;
             gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 350px;
         }
 
         .btn-catalog {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
+            width: 100%;
             padding: 16px 36px;
             font-size: 1.1rem;
             font-weight: 700;
@@ -196,6 +200,20 @@
         }
 
         .btn-wholesale:hover {
+            background: var(--accent-gold);
+            color: #0c0c0e;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px var(--accent-gold-glow);
+        }
+
+        .btn-roulette {
+            background: var(--card-bg);
+            color: var(--text-main);
+            border: 2px solid var(--accent-gold);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-roulette:hover {
             background: var(--accent-gold);
             color: #0c0c0e;
             transform: translateY(-3px);
@@ -401,13 +419,8 @@
                 font-size: 2.2rem;
             }
             .catalog-selectors {
-                flex-direction: column;
                 width: 100%;
                 padding: 0 20px;
-            }
-            .btn-catalog {
-                width: 100%;
-                justify-content: center;
             }
             header {
                 padding: 15px 5%;
@@ -432,7 +445,7 @@
                 <i class="fa-solid fa-fire-flame-curved"></i>
             </div>
             <h1>BIENVENIDO A <span>BROSKI MARKET</span></h1>
-            <p>Selecciona el catálogo que deseas consultar para ver nuestra selección de vapes.</p>
+            <p>Selecciona el catálogo que deseas consultar o prueba tu suerte con nuestra ruleta.</p>
             
             <div class="catalog-selectors">
                 <button class="btn-catalog btn-personal" onclick="switchView('personal')">
@@ -441,6 +454,9 @@
                 <button class="btn-catalog btn-wholesale" onclick="switchView('wholesale')">
                     <i class="fa-solid fa-boxes-stacked"></i> Catálogo Mayoreo
                 </button>
+                <a href="https://lixde.github.io/BROSKIRULETA/" target="_blank" class="btn-catalog btn-roulette">
+                    <i class="fa-solid fa-dharmachakra"></i> Ruleta Misteriosa
+                </a>
             </div>
         </div>
     </section>
