@@ -38,7 +38,7 @@
             position: relative;
         }
 
-        /* --- BACKGROUND PARTICLES --- */
+        /* --- BACKGROUND PARTICLES / REACT BITS STYLE --- */
         #particles-canvas {
             position: fixed;
             top: 0;
@@ -140,109 +140,39 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 30px 5%;
+            padding: 40px 5%;
             background: radial-gradient(circle at 50% 35%, rgba(243, 198, 20, 0.12) 0%, transparent 65%);
         }
 
-        /* --- VAPE 3D INTERACTIVO --- */
-        .vape-3d-wrapper {
-            perspective: 1000px;
-            margin-bottom: 25px;
-            cursor: pointer;
-        }
-
-        .vape-3d-container {
-            width: 90px;
-            height: 200px;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: transform 0.1s ease-out;
-            animation: float-vape 4s ease-in-out infinite;
-        }
-
-        @keyframes float-vape {
-            0%, 100% { transform: translateY(0) rotateX(5deg) rotateY(-5deg); }
-            50% { transform: translateY(-12px) rotateX(-5deg) rotateY(10deg); }
-        }
-
-        .vape-body {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #1f1f25 0%, #111114 100%);
+        .home-logo-circle {
+            width: 130px;
+            height: 130px;
+            background: linear-gradient(135deg, rgba(243, 198, 20, 0.1), rgba(19, 13, 16, 0.8));
             border: 2px solid var(--accent-gold);
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6), 0 0 25px var(--accent-gold-glow);
+            border-radius: 50%;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            padding: 15px 10px;
-            transform-style: preserve-3d;
-        }
-
-        .vape-mouthpiece {
-            width: 40px;
-            height: 18px;
-            background: #2b2b33;
-            border: 1px solid var(--accent-gold);
-            border-radius: 8px 8px 4px 4px;
-            transform: translateZ(10px);
-        }
-
-        .vape-screen {
-            width: 55px;
-            height: 65px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(243, 198, 20, 0.4);
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            transform: translateZ(15px);
+            margin-bottom: 30px;
+            box-shadow: 0 0 35px var(--accent-gold-glow);
+            animation: pulse-glow 3.5s infinite ease-in-out;
         }
 
-        .vape-screen .brand-mini {
-            font-size: 0.55rem;
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(243, 198, 20, 0.25), inset 0 0 15px rgba(243, 198, 20, 0.1); transform: scale(1); }
+            50% { box-shadow: 0 0 45px rgba(243, 198, 20, 0.5), inset 0 0 25px rgba(243, 198, 20, 0.2); transform: scale(1.03); }
+        }
+
+        .home-logo-circle i {
+            font-size: 3.2rem;
             color: var(--accent-gold);
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-        .vape-screen .battery-icon {
-            font-size: 1.1rem;
-            color: var(--gift-color);
-            margin-top: 4px;
-        }
-
-        .vape-led {
-            width: 12px;
-            height: 12px;
-            background: var(--accent-gold);
-            border-radius: 50%;
-            box-shadow: 0 0 15px var(--accent-gold);
-            transform: translateZ(12px);
-            transition: transform 0.2s, background 0.2s;
-        }
-
-        .vape-3d-container.active-puff .vape-led {
-            background: #34d399;
-            box-shadow: 0 0 25px #34d399, 0 0 40px #34d399;
-            transform: translateZ(20px) scale(1.2);
-        }
-
-        .vape-hint {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-bottom: 25px;
-            letter-spacing: 0.5px;
+            filter: drop-shadow(0 0 10px var(--accent-gold-glow));
         }
 
         .home-hero h1 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             letter-spacing: 1px;
         }
 
@@ -253,15 +183,15 @@
 
         .home-hero p {
             color: var(--text-muted);
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             max-width: 550px;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
         }
 
         .catalog-selectors {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 18px;
             align-items: center;
             width: 100%;
             max-width: 340px;
@@ -273,7 +203,7 @@
             justify-content: center;
             gap: 12px;
             width: 100%;
-            padding: 15px 30px;
+            padding: 16px 30px;
             font-size: 1.05rem;
             font-weight: 700;
             border-radius: 30px;
@@ -428,7 +358,7 @@
             margin: 0 auto;
         }
 
-        /* --- CATEGORÍAS Y PRODUCTOS (SPOTLIGHT CARDS) --- */
+        /* --- CATEGORÍAS Y PRODUCTOS (SPOTLIGHT CARDS STYLE) --- */
         .category-section {
             margin-bottom: 55px;
         }
@@ -457,6 +387,7 @@
             gap: 25px;
         }
 
+        /* Tarjeta con efecto Spotlight interactivo en JS */
         .product-card {
             background: var(--card-bg);
             border-radius: 18px;
@@ -471,6 +402,7 @@
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
         }
 
+        /* Pseudo-elemento para el brillo tipo Spotlight de React Bits */
         .product-card::before {
             content: '';
             position: absolute;
@@ -580,6 +512,7 @@
             transform: scale(1.05);
         }
 
+        /* --- BOTÓN DE COTIZAR MAYOREO --- */
         .btn-quote-wholesale {
             display: flex;
             align-items: center;
@@ -607,6 +540,7 @@
             font-size: 1.2rem;
         }
 
+        /* --- FOOTER --- */
         footer {
             text-align: center;
             padding: 35px;
@@ -616,6 +550,7 @@
             font-size: 0.85rem;
         }
 
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .home-hero h1 {
                 font-size: 2.2rem;
@@ -638,7 +573,7 @@
 </head>
 <body>
 
-    <!-- Canvas de Partículas -->
+    <!-- Canvas de Partículas Estilo React Bits -->
     <canvas id="particles-canvas"></canvas>
 
     <!-- Header Fijo -->
@@ -652,22 +587,9 @@
     <!-- VISTA INICIAL (HOME) -->
     <section id="view-home" class="view-section active">
         <div class="home-hero">
-            
-            <!-- VAPE 3D INTERACTIVO -->
-            <div class="vape-3d-wrapper" id="vape-wrapper" onclick="triggerVapePuff()">
-                <div class="vape-3d-container" id="vape-container">
-                    <div class="vape-body">
-                        <div class="vape-mouthpiece"></div>
-                        <div class="vape-screen">
-                            <span class="brand-mini">BROSKI</span>
-                            <i class="fa-solid fa-bolt battery-icon"></i>
-                        </div>
-                        <div class="vape-led" id="vape-led"></div>
-                    </div>
-                </div>
+            <div class="home-logo-circle">
+                <i class="fa-solid fa-fire-flame-curved"></i>
             </div>
-            <div class="vape-hint"><i class="fa-solid fa-hand-pointer"></i> Toca el dispositivo para activar</div>
-
             <h1>BIENVENIDO A <span>BROSKI MARKET</span></h1>
             <p>Selecciona el catálogo que deseas consultar o prueba tu suerte con nuestra ruleta.</p>
             
@@ -684,7 +606,7 @@
             </div>
         </div>
 
-        <!-- Banner de WhatsApp -->
+        <!-- Pestaña Emergente / Banner de WhatsApp -->
         <div id="whatsapp-popup" class="whatsapp-popup">
             <div class="whatsapp-popup-header">
                 <div class="whatsapp-popup-title">
@@ -709,6 +631,7 @@
                 <p>Vapes de máxima calidad para disfrutar al máximo.</p>
             </div>
 
+            <!-- LOS FAVORITOS -->
             <div class="category-section">
                 <h3 class="category-title"><i class="fa-solid fa-star"></i> LOS FAVORITOS</h3>
                 <div class="product-grid">
@@ -733,6 +656,7 @@
                 </div>
             </div>
 
+            <!-- FAMILIA WAKA -->
             <div class="category-section">
                 <h3 class="category-title"><i class="fa-solid fa-shield-halved"></i> FAMILIA WAKA</h3>
                 <div class="product-grid">
@@ -766,6 +690,7 @@
                 </div>
             </div>
 
+            <!-- FAMILIA FASTA -->
             <div class="category-section">
                 <h3 class="category-title"><i class="fa-solid fa-gauge-high"></i> FAMILIA FASTA</h3>
                 <div class="product-grid">
@@ -784,12 +709,13 @@
                         <div class="product-info-details" style="color: var(--text-muted);">Garantía disponible</div>
                         <div class="product-footer">
                             <span class="price">$460 MXN</span>
-                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20Fasta%2050,000%20hits" target="_blank" class="btn-buy">Pedir</a>
+                            <a href="https://wa.me/525583896461?text=Hola,%20me%20interesa%20Fasta%2050,000%20hits%20(Personal)" target="_blank" class="btn-buy">Pedir</a>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- FAMILIA GALAXY -->
             <div class="category-section">
                 <h3 class="category-title"><i class="fa-solid fa-meteor"></i> FAMILIA GALAXY</h3>
                 <div class="product-grid">
@@ -814,6 +740,7 @@
                 </div>
             </div>
 
+            <!-- BROSKI CHOICE -->
             <div class="category-section">
                 <h3 class="category-title"><i class="fa-solid fa-crown"></i> BROSKI CHOICE</h3>
                 <div class="product-grid">
@@ -849,6 +776,7 @@
                 <p>⚠️ El mayoreo aplica a partir de 10 piezas. Cotiza directo por WhatsApp para conocer los mejores precios por volumen.</p>
             </div>
 
+            <!-- LOS FAVORITOS -->
             <div class="category-section">
                 <h3 class="category-title"><i class="fa-solid fa-star"></i> LOS FAVORITOS</h3>
                 <div class="product-grid">
@@ -871,6 +799,7 @@
                 </div>
             </div>
 
+            <!-- FAMILIA WAKA -->
             <div class="category-section">
                 <h3 class="category-title"><i class="fa-solid fa-shield-halved"></i> FAMILIA WAKA</h3>
                 <div class="product-grid">
@@ -901,6 +830,7 @@
                 </div>
             </div>
 
+            <!-- FAMILIA FASTA -->
             <div class="category-section">
                 <h3 class="category-title"><i class="fa-solid fa-gauge-high"></i> FAMILIA FASTA</h3>
                 <div class="product-grid">
@@ -923,6 +853,7 @@
                 </div>
             </div>
 
+            <!-- FAMILIA GALAXY -->
             <div class="category-section">
                 <h3 class="category-title"><i class="fa-solid fa-meteor"></i> FAMILIA GALAXY</h3>
                 <div class="product-grid">
@@ -945,6 +876,7 @@
                 </div>
             </div>
 
+            <!-- BROSKI CHOICE -->
             <div class="category-section">
                 <h3 class="category-title"><i class="fa-solid fa-crown"></i> BROSKI CHOICE</h3>
                 <div class="product-grid">
@@ -975,7 +907,7 @@
         <p>&copy; 2026 BROSKI MARKET. Todos los derechos reservados. Prohibida la venta a menores de edad.</p>
     </footer>
 
-    <!-- Scripts de Interactividad -->
+    <!-- Scripts de Interactividad (Spotlight + Particles + Vistas) -->
     <script>
         // 1. Control de Vistas
         function switchView(viewName) {
@@ -1006,37 +938,7 @@
             }
         }
 
-        // 3. Efecto Giroscópico 3D en el Vape Interactivo
-        const vapeWrapper = document.getElementById('vape-wrapper');
-        const vapeContainer = document.getElementById('vape-container');
-
-        if (vapeWrapper) {
-            vapeWrapper.addEventListener('mousemove', e => {
-                const rect = vapeWrapper.getBoundingClientRect();
-                const x = e.clientX - rect.left - rect.width / 2;
-                const y = e.clientY - rect.top - rect.height / 2;
-                
-                const rotateX = (-y / 5);
-                const rotateY = (x / 5);
-                
-                vapeContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.08)`;
-            });
-
-            vapeWrapper.addEventListener('mouseleave', () => {
-                vapeContainer.style.transform = `rotateX(0deg) rotateY(0deg) scale(1)`;
-            });
-        }
-
-        // 4. Simular Calada / Activación LED al hacer clic en el Vape 3D
-        function triggerVapePuff() {
-            const container = document.getElementById('vape-container');
-            container.classList.add('active-puff');
-            setTimeout(() => {
-                container.classList.remove('active-puff');
-            }, 600);
-        }
-
-        // 5. Spotlight en Tarjetas de Productos
+        // 3. Efecto Spotlight Interactivo en las Tarjetas (Estilo React Bits)
         document.addEventListener('mousemove', e => {
             document.querySelectorAll('.product-card').forEach(card => {
                 const rect = card.getBoundingClientRect();
@@ -1047,7 +949,7 @@
             });
         });
 
-        // 6. Animación de Partículas de Fondo
+        // 4. Animación de Partículas de Fondo en Canvas
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
 
