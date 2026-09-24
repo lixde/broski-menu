@@ -11,16 +11,16 @@
     <style>
         :root {
             --bg-color: #0c0c0e;
-            --card-bg: #16161a;
+            --card-bg: #131316;
             --accent-gold: #f3c614;
-            --accent-gold-glow: rgba(243, 198, 20, 0.25);
+            --accent-gold-glow: rgba(243, 198, 20, 0.35);
             --text-main: #ffffff;
             --text-muted: #a0a0a0;
-            --border-color: rgba(243, 198, 20, 0.15);
+            --border-color: rgba(243, 198, 20, 0.2);
             --warning-color: #f87171;
             --gift-color: #34d399;
             --whatsapp-color: #25d366;
-            --whatsapp-glow: rgba(37, 211, 102, 0.3);
+            --whatsapp-glow: rgba(37, 211, 102, 0.4);
         }
 
         * {
@@ -35,6 +35,23 @@
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- BACKGROUND PARTICLES / REACT BITS STYLE --- */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        header, .view-section, footer, .whatsapp-popup {
+            position: relative;
+            z-index: 2;
         }
 
         /* --- HEADER --- */
@@ -47,10 +64,11 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 8%;
-            background: rgba(12, 12, 14, 0.95);
-            backdrop-filter: blur(12px);
+            background: rgba(12, 12, 14, 0.85);
+            backdrop-filter: blur(16px);
             z-index: 1000;
             border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
         .logo {
@@ -58,7 +76,7 @@
             font-weight: 700;
             color: var(--text-main);
             text-decoration: none;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -67,7 +85,13 @@
 
         .logo span {
             color: var(--accent-gold);
-            text-shadow: 0 0 12px var(--accent-gold-glow);
+            text-shadow: 0 0 15px var(--accent-gold-glow);
+            animation: text-glow 2.5s infinite alternate;
+        }
+
+        @keyframes text-glow {
+            0% { text-shadow: 0 0 10px rgba(243, 198, 20, 0.2); }
+            100% { text-shadow: 0 0 25px rgba(243, 198, 20, 0.6); }
         }
 
         .back-home {
@@ -78,15 +102,17 @@
             border-radius: 20px;
             cursor: pointer;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-decoration: none;
             font-size: 0.9rem;
+            box-shadow: 0 0 10px rgba(243, 198, 20, 0.1);
         }
 
         .back-home:hover {
             background: var(--accent-gold);
             color: var(--bg-color);
-            box-shadow: 0 0 15px var(--accent-gold-glow);
+            box-shadow: 0 0 20px var(--accent-gold-glow);
+            transform: translateY(-2px);
         }
 
         /* --- VISTAS --- */
@@ -94,45 +120,53 @@
             display: none;
             min-height: 100vh;
             padding-top: 100px;
+            animation: fadeIn 0.4s ease-in-out forwards;
         }
 
         .view-section.active {
             display: block;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* --- VISTA INICIAL (HOME) --- */
         .home-hero {
-            min-height: 100vh;
+            min-height: calc(100vh - 100px);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             padding: 40px 5%;
-            background: radial-gradient(circle at 50% 40%, rgba(243, 198, 20, 0.08) 0%, transparent 60%);
+            background: radial-gradient(circle at 50% 35%, rgba(243, 198, 20, 0.12) 0%, transparent 65%);
         }
 
         .home-logo-circle {
-            width: 140px;
-            height: 140px;
-            border: 3px solid var(--accent-gold);
+            width: 130px;
+            height: 130px;
+            background: linear-gradient(135deg, rgba(243, 198, 20, 0.1), rgba(19, 13, 16, 0.8));
+            border: 2px solid var(--accent-gold);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 30px;
-            box-shadow: 0 0 30px var(--accent-gold-glow);
-            animation: pulse-glow 3s infinite ease-in-out;
+            box-shadow: 0 0 35px var(--accent-gold-glow);
+            animation: pulse-glow 3.5s infinite ease-in-out;
         }
 
         @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(243, 198, 20, 0.2); }
-            50% { box-shadow: 0 0 40px rgba(243, 198, 20, 0.4); }
+            0%, 100% { box-shadow: 0 0 20px rgba(243, 198, 20, 0.25), inset 0 0 15px rgba(243, 198, 20, 0.1); transform: scale(1); }
+            50% { box-shadow: 0 0 45px rgba(243, 198, 20, 0.5), inset 0 0 25px rgba(243, 198, 20, 0.2); transform: scale(1.03); }
         }
 
         .home-logo-circle i {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             color: var(--accent-gold);
+            filter: drop-shadow(0 0 10px var(--accent-gold-glow));
         }
 
         .home-hero h1 {
@@ -144,23 +178,23 @@
 
         .home-hero h1 span {
             color: var(--accent-gold);
-            text-shadow: 0 0 15px var(--accent-gold-glow);
+            text-shadow: 0 0 20px var(--accent-gold-glow);
         }
 
         .home-hero p {
             color: var(--text-muted);
             font-size: 1.1rem;
-            max-width: 600px;
+            max-width: 550px;
             margin-bottom: 40px;
         }
 
         .catalog-selectors {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 18px;
             align-items: center;
             width: 100%;
-            max-width: 350px;
+            max-width: 340px;
         }
 
         .btn-catalog {
@@ -169,77 +203,65 @@
             justify-content: center;
             gap: 12px;
             width: 100%;
-            padding: 16px 36px;
-            font-size: 1.1rem;
+            padding: 16px 30px;
+            font-size: 1.05rem;
             font-weight: 700;
-            border-radius: 35px;
+            border-radius: 30px;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.8px;
         }
 
         .btn-personal {
             background: linear-gradient(135deg, #f3c614, #d4a707);
             color: #0c0c0e;
-            box-shadow: 0 4px 20px var(--accent-gold-glow);
+            box-shadow: 0 4px 25px var(--accent-gold-glow);
             border: none;
         }
 
         .btn-personal:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(243, 198, 20, 0.4);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(243, 198, 20, 0.5);
         }
 
-        .btn-wholesale {
+        .btn-wholesale, .btn-roulette {
             background: var(--card-bg);
             color: var(--text-main);
-            border: 2px solid var(--accent-gold);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border: 2px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
-        .btn-wholesale:hover {
+        .btn-wholesale:hover, .btn-roulette:hover {
             background: var(--accent-gold);
             color: #0c0c0e;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px var(--accent-gold-glow);
+            border-color: var(--accent-gold);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 8px 30px var(--accent-gold-glow);
         }
 
-        .btn-roulette {
-            background: var(--card-bg);
-            color: var(--text-main);
-            border: 2px solid var(--accent-gold);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-roulette:hover {
-            background: var(--accent-gold);
-            color: #0c0c0e;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px var(--accent-gold-glow);
-        }
-
-        /* --- PESTAÑA EMERGENTE / BANNER WHATSAPP --- */
+        /* --- WHATSAPP POPUP CARD --- */
         .whatsapp-popup {
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background: var(--card-bg);
+            background: rgba(19, 19, 22, 0.95);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--whatsapp-color);
-            border-radius: 16px;
-            padding: 18px 22px;
+            border-radius: 18px;
+            padding: 20px;
             max-width: 330px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 20px var(--whatsapp-glow);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7), 0 0 25px var(--whatsapp-glow);
             z-index: 1100;
             display: flex;
             flex-direction: column;
             gap: 12px;
-            animation: slide-up 0.5s ease-out;
+            animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         @keyframes slide-up {
-            from { transform: translateY(100px); opacity: 0; }
+            from { transform: translateY(120px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
 
@@ -261,6 +283,7 @@
         .whatsapp-popup-title i {
             color: var(--whatsapp-color);
             font-size: 1.3rem;
+            filter: drop-shadow(0 0 8px var(--whatsapp-glow));
         }
 
         .whatsapp-close-btn {
@@ -295,25 +318,25 @@
             font-weight: 600;
             font-size: 0.85rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px var(--whatsapp-glow);
+            box-shadow: 0 4px 15px var(--whatsapp-glow);
         }
 
         .btn-whatsapp-join:hover {
             background: #20ba5a;
             transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.5);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
         }
 
         /* --- CONTENEDOR DE CATÁLOGOS --- */
         .catalog-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px 80px 20px;
+            padding: 30px 20px 80px 20px;
         }
 
         .catalog-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 45px;
         }
 
         .catalog-header h2 {
@@ -325,6 +348,7 @@
 
         .catalog-header h2 span {
             color: var(--accent-gold);
+            text-shadow: 0 0 15px var(--accent-gold-glow);
         }
 
         .catalog-header p {
@@ -334,13 +358,13 @@
             margin: 0 auto;
         }
 
-        /* --- CATEGORÍAS Y PRODUCTOS --- */
+        /* --- CATEGORÍAS Y PRODUCTOS (SPOTLIGHT CARDS STYLE) --- */
         .category-section {
-            margin-bottom: 60px;
+            margin-bottom: 55px;
         }
 
         .category-title {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
             margin-bottom: 25px;
             padding-bottom: 10px;
@@ -349,11 +373,12 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            letter-spacing: 0.5px;
         }
 
         .category-title i {
             color: var(--accent-gold);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
         }
 
         .product-grid {
@@ -362,36 +387,60 @@
             gap: 25px;
         }
 
+        /* Tarjeta con efecto Spotlight interactivo en JS */
         .product-card {
             background: var(--card-bg);
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 20px;
+            border-radius: 18px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 22px;
             text-align: center;
-            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+        }
+
+        /* Pseudo-elemento para el brillo tipo Spotlight de React Bits */
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            border-radius: 18px;
+            background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(243, 198, 20, 0.12), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .product-card:hover::before {
+            opacity: 1;
         }
 
         .product-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent-gold);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-gold-glow);
+            transform: translateY(-6px);
+            border-color: rgba(243, 198, 20, 0.4);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(243, 198, 20, 0.15);
+        }
+
+        .product-card > * {
+            position: relative;
+            z-index: 2;
         }
 
         .product-img-container {
             width: 100%;
-            height: 200px;
+            height: 195px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 15px;
-            background: transparent;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
             overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.03);
         }
 
         .product-img {
@@ -399,15 +448,15 @@
             max-height: 100%;
             object-fit: contain;
             border-radius: 8px;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .product-card:hover .product-img {
-            transform: scale(1.05);
+            transform: scale(1.07);
         }
 
         .product-card h3 {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 600;
             margin-bottom: 8px;
         }
@@ -426,6 +475,7 @@
         .gift-yes {
             color: var(--gift-color);
             font-weight: 600;
+            text-shadow: 0 0 10px rgba(52, 211, 153, 0.25);
         }
 
         .product-footer {
@@ -434,32 +484,35 @@
             justify-content: space-between;
             margin-top: auto;
             padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
 
         .price {
             font-size: 1.15rem;
             font-weight: 700;
             color: var(--accent-gold);
+            text-shadow: 0 0 10px var(--accent-gold-glow);
         }
 
         .btn-buy {
             background: var(--accent-gold);
             color: #0c0c0e;
-            padding: 8px 18px;
+            padding: 8px 20px;
             border-radius: 20px;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.85rem;
             transition: all 0.2s ease;
+            box-shadow: 0 0 10px var(--accent-gold-glow);
         }
 
         .btn-buy:hover {
             background: #fff;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 18px rgba(255, 255, 255, 0.6);
+            transform: scale(1.05);
         }
 
-        /* --- BOTÓN DE COTIZAR MAYOREO (LLAMATIVO) --- */
+        /* --- BOTÓN DE COTIZAR MAYOREO --- */
         .btn-quote-wholesale {
             display: flex;
             align-items: center;
@@ -480,7 +533,7 @@
         .btn-quote-wholesale:hover {
             background: #20ba5a;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
         }
 
         .btn-quote-wholesale i {
@@ -490,7 +543,7 @@
         /* --- FOOTER --- */
         footer {
             text-align: center;
-            padding: 30px;
+            padding: 35px;
             background: #08080a;
             color: var(--text-muted);
             border-top: 1px solid var(--border-color);
@@ -519,6 +572,9 @@
     </style>
 </head>
 <body>
+
+    <!-- Canvas de Partículas Estilo React Bits -->
+    <canvas id="particles-canvas"></canvas>
 
     <!-- Header Fijo -->
     <header>
@@ -851,8 +907,9 @@
         <p>&copy; 2026 BROSKI MARKET. Todos los derechos reservados. Prohibida la venta a menores de edad.</p>
     </footer>
 
-    <!-- Script de Navegación de Vistas y Popup -->
+    <!-- Scripts de Interactividad (Spotlight + Particles + Vistas) -->
     <script>
+        // 1. Control de Vistas
         function switchView(viewName) {
             document.querySelectorAll('.view-section').forEach(section => {
                 section.classList.remove('active');
@@ -873,12 +930,84 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // 2. Cerrar Banner WhatsApp
         function closeWhatsappPopup() {
             const popup = document.getElementById('whatsapp-popup');
             if (popup) {
                 popup.style.display = 'none';
             }
         }
+
+        // 3. Efecto Spotlight Interactivo en las Tarjetas (Estilo React Bits)
+        document.addEventListener('mousemove', e => {
+            document.querySelectorAll('.product-card').forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // 4. Animación de Partículas de Fondo en Canvas
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particlesArray = [];
+        const numberOfParticles = 35;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.4;
+                this.speedY = (Math.random() - 0.5) * 0.4;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(243, 198, 20, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particlesArray.forEach(particle => {
+                particle.update();
+                particle.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
     </script>
 </body>
 </html>
